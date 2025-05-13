@@ -1,13 +1,31 @@
+require('dotenv').config(); // Load environment variables
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var mongoose = require('mongoose'); // Add mongoose for MongoDB
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
+
+// ** Connect to MongoDB **
+async function connectDB() {
+  try {
+    await mongoose.connect(process.env.MONGO_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log('MongoDB connected successfully');
+  } catch (err) {
+    console.error('Failed to connect to MongoDB:', err.message);
+    console.log("MongoDB URI:", process.env.MONGO_URI);
+    process.exit(1); // Exit the app if the database connection fails
+  }
+}
+connectDB();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

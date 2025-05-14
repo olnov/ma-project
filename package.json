@@ -1,0 +1,20 @@
+{
+  "name": "ma_project",
+  "version": "1.0.0",
+  "description": "Description to be added",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/olnov/ma-project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/olnov/ma-project/issues"
+  },
+  "homepage": "https://github.com/olnov/ma-project#readme"
+}

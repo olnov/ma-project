@@ -1,11 +1,11 @@
 require('dotenv').config();
 const express = require('express');
-// const mongoose = require('mongoose');
 const connectDB = require('./config/db.js')
 const cors = require('cors');
 const logger = require('morgan');
-
-const indexRouter = require('./routes/index'); // or rename to 'apiRouter'
+const swaggerUi = require('swagger-ui-express');
+const swaggerFile = require('./swagger-output.json');
+const healthRouter = require('./routes/health'); 
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -19,7 +19,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // Routes
-app.use('/api', indexRouter);
+app.use('/api/v1/', healthRouter);
+app.use('/api/v1/docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 // 404 handler
 app.use((req, res, next) => {

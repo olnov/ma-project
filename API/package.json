@@ -3,8 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js"
+    "start": "npm run swagger && node index.js",
+    "dev": "npm run swagger && nodemon index.js",
+    "swagger": "node ./swagger.js"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -16,9 +17,11 @@
     "jade": "~1.11.0",
     "mongodb": "^6.16.0",
     "mongoose": "^8.14.2",
-    "morgan": "~1.9.1"
+    "morgan": "~1.9.1",
+    "swagger-autogen": "^2.23.7",
+    "swagger-ui-express": "^5.0.1"
   },
-  "main": "app.js",
+  "main": "index.js",
   "keywords": [],
   "author": "",
   "license": "ISC",

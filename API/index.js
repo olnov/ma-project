@@ -5,7 +5,10 @@ const cors = require('cors');
 const logger = require('morgan');
 const swaggerUi = require('swagger-ui-express');
 const swaggerFile = require('./swagger-output.json');
-const healthRouter = require('./routes/health'); 
+const healthRouter = require('./routes/health');
+const authRouter = require('./routes/auth'); 
+const feedbacksRouter = require('./routes/feedback');
+const bodyParser = require('body-parser')
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -17,10 +20,15 @@ app.use(logger('dev'));
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.json())
+app.use('/api/v1/docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
+
 
 // Routes
+app.use('/api/v1/feedbacks', feedbacksRouter);
+app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/', healthRouter);
-app.use('/api/v1/docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
+
 
 // 404 handler
 app.use((req, res, next) => {

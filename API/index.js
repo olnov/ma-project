@@ -9,6 +9,8 @@ const healthRouter = require('./routes/health');
 const checkJwt = require('./middleware/checkJwt');
 const { requiredScopes } = require('express-oauth2-jwt-bearer');
 
+// minor change
+
 const app = express();
 const PORT = process.env.PORT || 5000;
 

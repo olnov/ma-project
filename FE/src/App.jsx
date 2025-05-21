@@ -3,8 +3,8 @@ import './App.css';
 // import { useAuth0 } from '@auth0/auth0-react';
 import LoginButton from './components/authentication/LoginButton';
 import LogoutButton from './components/authentication/LogoutButton';
-import UserProfile from './components/UserProfile';
-import ProtectedContent from './components/ProtectedContent';
+import UserProfile from './components/user/UserProfile';
+import ProtectedContent from './components/authentication/ProtectedContent';
 
 function App() {
   return (

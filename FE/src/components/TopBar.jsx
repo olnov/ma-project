@@ -11,7 +11,7 @@ const TopBar = () => {
       height="60px"
       zIndex="1000"
       bg="yellow.100"
-      color="geray.800"
+      color="gray.800"
       align="center"
       px={6}
       shadow="md"

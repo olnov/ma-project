@@ -1,16 +1,18 @@
 import { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
+import { use } from "react";
 
 const ProtectedContent = () => {
   const { getAccessTokenSilently, isAuthenticated } = useAuth0();
   const [message, setMessage] = useState("");
-
+ 
   useEffect(() => {
     const fetchProtectedData = async () => {
       try {
         const token = await getAccessTokenSilently();
+        console.log("Access Token:", token);
 
-        const res = await fetch("http://localhost:5000/api/private", {
+        const res = await fetch("http://localhost:5000/api/v1/private", {
           headers: {
             Authorization: `Bearer ${token}`,
           },

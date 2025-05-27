@@ -13,6 +13,11 @@ const bodyParser = require('body-parser')
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+// Routers
+const healthRouter = require('./routes/health');
+const publicRouter = require('./routes/public');
+const privateRouter = require('./routes/private');
+
 // Connect to MongoDB
 connectDB();
 // Middleware
@@ -27,7 +32,9 @@ app.use('/api/v1/docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 app.use('/api/v1/feedbacks', feedbacksRouter);
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/', healthRouter);
-
+app.use('/api/v1/docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
+app.use('/api/v1/', publicRouter);
+app.use('/api/v1/', privateRouter);
 
 // 404 handler
 app.use((req, res, next) => {
@@ -44,5 +51,5 @@ app.use((err, req, res, next) => {
 
 // Start server
 app.listen(PORT, () => {
-  console.log(`🚀 Server is running on http://localhost:${PORT}`);
+  console.log(`Server is running on http://localhost:${PORT}`);
 });

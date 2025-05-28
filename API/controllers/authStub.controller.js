@@ -1,3 +1,6 @@
+// This is a stub controller for handling user login.
+// TODO: Remove or replace with the actual Auth0 login logic.
+
 const jwt = require('jsonwebtoken');
 
 const fakeUser = {

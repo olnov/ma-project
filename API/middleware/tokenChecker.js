@@ -1,3 +1,6 @@
+// This is a stub middleware function that checks for a JWT token in the request headers.
+// TODO: Replace with the actual Auth0 token verification logic.
+
 const { verify } = require("jsonwebtoken");
 
 const tokenChecker = (req, res, next) => {

@@ -1,3 +1,6 @@
+// Stub login page
+// TODO: Remove or replace with the actual Auth0 login logic.
+
 import { Box, Text, Button } from "@chakra-ui/react";
 import { login } from "../services/AuthService";
 import { useNavigate } from "react-router-dom";

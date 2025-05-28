@@ -1,3 +1,6 @@
+// This is a demo page to test ChakraUI inetgration
+// TODO: Remove once ChakraUI is fully integrated
+
 import { Button, HStack } from "@chakra-ui/react"
 
 const Demo = () => {

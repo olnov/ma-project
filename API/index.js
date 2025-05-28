@@ -5,9 +5,6 @@ const cors = require('cors');
 const logger = require('morgan');
 const swaggerUi = require('swagger-ui-express');
 const swaggerFile = require('./swagger-output.json');
-const healthRouter = require('./routes/health');
-const authRouter = require('./routes/auth'); 
-const feedbacksRouter = require('./routes/feedback');
 const bodyParser = require('body-parser')
 
 const app = express();
@@ -17,6 +14,8 @@ const PORT = process.env.PORT || 5000;
 const healthRouter = require('./routes/health');
 const publicRouter = require('./routes/public');
 const privateRouter = require('./routes/private');
+const authRouter = require('./routes/auth'); 
+const feedbacksRouter = require('./routes/feedback');
 
 // Connect to MongoDB
 connectDB();

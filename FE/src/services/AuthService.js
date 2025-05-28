@@ -1,3 +1,6 @@
+// Stub service to simulate login functionality.
+// TODO: Remove or replace with the actual Auth0 login logic.
+
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 export const login = async (email, password) => {

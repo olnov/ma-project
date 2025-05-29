@@ -2,7 +2,7 @@
   "openapi": "3.0.0",
   "info": {
     "title": "MA Project API",
-    "description": "Backed API documentation for MA Project",
+    "description": "Backend API documentation for MA Project",
     "version": "1.0.0"
   },
   "servers": [
@@ -11,6 +11,52 @@
     }
   ],
   "paths": {
+    "/api/v1/feedbacks/": {
+      "post": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/v1/auth/login": {
+      "post": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "example": "any"
+                  },
+                  "password": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/health": {
       "get": {
         "description": "",
@@ -46,9 +92,6 @@
     "securitySchemes": {
       "bearerAuth": {
         "type": "http",
-        "in": "header",
-        "name": "Authorization",
-        "description": "Bearer token to access these api endpoints",
         "scheme": "bearer",
         "bearerFormat": "JWT"
       }

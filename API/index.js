@@ -5,6 +5,7 @@ const cors = require('cors');
 const logger = require('morgan');
 const swaggerUi = require('swagger-ui-express');
 const swaggerFile = require('./swagger-output.json');
+const bodyParser = require('body-parser')
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -13,6 +14,8 @@ const PORT = process.env.PORT || 5000;
 const healthRouter = require('./routes/health');
 const publicRouter = require('./routes/public');
 const privateRouter = require('./routes/private');
+const authRouter = require('./routes/auth'); 
+const feedbacksRouter = require('./routes/feedback');
 
 // Connect to MongoDB
 connectDB();
@@ -21,8 +24,12 @@ app.use(logger('dev'));
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use('/api/v1/docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
+
 
 // Routes
+app.use('/api/v1/feedbacks', feedbacksRouter);
+app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/', healthRouter);
 app.use('/api/v1/docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 app.use('/api/v1/', publicRouter);

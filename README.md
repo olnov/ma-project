@@ -1,32 +1,25 @@
-#### MA Project
+# MA Project
 
-Description to be added
+MA-Project is an application designed to help professionals collect meaningful, project-based feedback from their colleagues. Share a unique link to request and receive insights about your performance and collaboration.
 
-1. npm install mongodb in api directory
+## Features
+
+- Request feedback from colleagues
+- Shareable feedback links
+- Contextual project-based input
+- Secure backend with token-based access
+- Clean and responsive UI (TBD)
+
+---
+
+## Tech Stack
+
+- **Frontend:** React + Vite
+- **Backend:** ExpressJS + Node.js
+- **Authentication:** JWT (Bearer token)
+- **Styling:** Chakra UI 
+- **API Documentation:** Swagger (OpenAPI)
+
+---
 
 
-const { MongoClient, ServerApiVersion } = require('mongodb');
-const uri = "mongodb+srv://maxjoseph22:6pYvHDD7Vxeuye7s@makersagencycluster.r6clqmr.mongodb.net/?retryWrites=true&w=majority&appName=MakersAgencyCluster";
-
-// Create a MongoClient with a MongoClientOptions object to set the Stable API version
-const client = new MongoClient(uri, {
-  serverApi: {
-    version: ServerApiVersion.v1,
-    strict: true,
-    deprecationErrors: true,
-  }
-});
-
-async function run() {
-  try {
-    // Connect the client to the server	(optional starting in v4.7)
-    await client.connect();
-    // Send a ping to confirm a successful connection
-    await client.db("admin").command({ ping: 1 });
-    console.log("Pinged your deployment. You successfully connected to MongoDB!");
-  } finally {
-    // Ensures that the client will close when you finish/error
-    await client.close();
-  }
-}
-run().catch(console.dir);

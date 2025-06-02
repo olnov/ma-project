@@ -4,7 +4,8 @@
 import { Box, Text, Button } from "@chakra-ui/react";
 // import { login } from "../services/AuthService";
 // import { useNavigate } from "react-router-dom";
-import { LoginButton } from "../components/authentication/LoginButton";
+import LoginButton from "../components/authentication/LoginButton";
+
 
 const Login = () => {
   return (
@@ -18,7 +19,6 @@ const Login = () => {
 };
 
 export default Login;
-
 
 // const Login = () => {
 //   const navigate = useNavigate();

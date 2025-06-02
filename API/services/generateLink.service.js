@@ -1,12 +1,12 @@
-const generateLink = (userId, feedbackRequestId) =>{
+const { v4: uuidv4 } = require('uuid');
+
+const generateLink = () =>{
     const BASE_URL = process.env.BASE_URL;
     if (!BASE_URL) {
         throw new Error('BASE_URL is not defined in the environment variables');
     }
-    if (!userId || !feedbackRequestId) {
-        throw new Error('User ID and Feedback Request ID are required');
-    }
-    const feedbackRequestLink = `${BASE_URL}/feedback?user_id=${userId}&feedback_id=${feedbackRequestId}`;
+    const linkId = uuidv4();
+    const feedbackRequestLink = `${BASE_URL}/feedback/${linkId}`;
     return feedbackRequestLink;
 }
 

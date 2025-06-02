@@ -5,7 +5,7 @@ import { use } from "react";
 const ProtectedContent = () => {
   const { getAccessTokenSilently, isAuthenticated } = useAuth0();
   const [message, setMessage] = useState("");
- 
+
   useEffect(() => {
     const fetchProtectedData = async () => {
       try {

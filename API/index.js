@@ -29,7 +29,7 @@ app.use('/api/v1/docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 // Routes
 app.use('/api/v1/feedbacks', feedbacksRouter);
-app.use('/api/v1/auth', authRouter);
+app.use('/api/v1/auth', authRouter); // FOR DEVELOPMENT ONLY
 app.use('/api/v1/', healthRouter);
 app.use('/api/v1/docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 app.use('/api/v1/', publicRouter);

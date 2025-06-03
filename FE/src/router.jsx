@@ -4,6 +4,8 @@ import NoTopBarLayout from "./layouts/NoTopBarLayout.jsx";
 import RequestFeedback from "./pages/RequestFeedback.jsx";
 import Login from "./pages/Login.jsx"; //TODO: Remove or replace with Auth0 login page
 import Demo from "./pages/demo.jsx";
+import NotFound from "./pages/NotFound.jsx";
+import CreateCampaign from "./pages/CreateCampaign.jsx";
 
 
 const router = createBrowserRouter([
@@ -31,6 +33,22 @@ const router = createBrowserRouter([
       </TopBarLayout>
     ),
   },
+  {
+    path: "/create-campaign",
+    element: (
+      <TopBarLayout>
+        <CreateCampaign />
+      </TopBarLayout>
+    ),
+  },
+  {
+    path: "*",
+    element: (
+      <NoTopBarLayout>
+        <NotFound />
+      </NoTopBarLayout>
+    ),
+  }
 ]);
 
 export default router;

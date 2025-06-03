@@ -6,9 +6,19 @@ import Login from "./pages/Login.jsx"; //TODO: Remove or replace with Auth0 logi
 import Demo from "./pages/demo.jsx";
 import NotFound from "./pages/NotFound.jsx";
 import CreateCampaign from "./pages/CreateCampaign.jsx";
+import Profile from "./components/user/Profile.jsx";
 
 
 const router = createBrowserRouter([
+  {
+    // TEMPORARY PATH TO PROFILE FOR POST-LOGIN
+    path: "/", 
+    element: (
+      <TopBarLayout>
+        <Profile />
+      </TopBarLayout>
+    ),
+  },
   {
     path: "/login", 
     element: (
@@ -42,13 +52,21 @@ const router = createBrowserRouter([
     ),
   },
   {
+    path: "/profile",
+    element: (
+      <TopBarLayout>
+        <Profile />
+      </TopBarLayout>
+    ),
+  },
+  {
     path: "*",
     element: (
       <NoTopBarLayout>
         <NotFound />
       </NoTopBarLayout>
     ),
-  }
+  },
 ]);
 
 export default router;

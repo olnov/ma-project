@@ -4,9 +4,19 @@ import NoTopBarLayout from "./layouts/NoTopBarLayout.jsx";
 import RequestFeedback from "./pages/RequestFeedback.jsx";
 import Login from "./pages/Login.jsx"; //TODO: Remove or replace with Auth0 login page
 import Demo from "./pages/demo.jsx";
+import Profile from "./components/user/Profile.jsx";
 
 
 const router = createBrowserRouter([
+  {
+    // TEMPORARY PATH TO PROFILE FOR POST-LOGIN
+    path: "/", 
+    element: (
+      <TopBarLayout>
+        <Profile />
+      </TopBarLayout>
+    ),
+  },
   {
     path: "/login", 
     element: (
@@ -28,6 +38,14 @@ const router = createBrowserRouter([
     element: (
       <TopBarLayout>
         <RequestFeedback />
+      </TopBarLayout>
+    ),
+  },
+  {
+    path: "/profile",
+    element: (
+      <TopBarLayout>
+        <Profile />
       </TopBarLayout>
     ),
   },

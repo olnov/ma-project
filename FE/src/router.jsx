@@ -9,6 +9,15 @@ import Profile from "./components/user/Profile.jsx";
 
 const router = createBrowserRouter([
   {
+    // TEMPORARY PATH TO PROFILE FOR POST-LOGIN
+    path: "/", 
+    element: (
+      <TopBarLayout>
+        <Profile />
+      </TopBarLayout>
+    ),
+  },
+  {
     path: "/login", 
     element: (
       <NoTopBarLayout>

@@ -7,7 +7,12 @@
   text-align: center;
 }
 
-.logo {
+body {
+  font-family: "Cabin", sans-serif;
+  font-optical-sizing: auto;
+}
+
+/* .logo {
   height: 6em;
   padding: 1.5em;
   will-change: filter;
@@ -41,4 +46,4 @@
 
 .read-the-docs {
   color: #888;
-}
+} */

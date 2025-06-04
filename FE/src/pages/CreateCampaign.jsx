@@ -198,7 +198,7 @@ const CreateCampaign = () => {
     const campaign = {
       _id: crypto.randomUUID(),
       title: campaignTitle,
-      userId: "950aad9b-c452-417f-be62-8d4d1a3b707e",
+      createdBy: "950aad9b-c452-417f-be62-8d4d1a3b707e",
       createdAt: new Date().toISOString(),
       projects: projects.map((p) => ({
         _id: p._id || crypto.randomUUID(),

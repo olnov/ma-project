@@ -1,24 +1,24 @@
-// Stub login page
-// TODO: Remove or replace with the actual Auth0 login logic.
+// CAN DELETE
 
-import { Box, Text, Button } from "@chakra-ui/react";
-// import { login } from "../services/AuthService";
-// import { useNavigate } from "react-router-dom";
-import LoginButton from "../components/authentication/LoginButton";
+// import { Box, Text, Button } from "@chakra-ui/react";
+// import LoginButton from "../components/authentication/LoginButton";
 
 
-const Login = () => {
-  return (
-    <Box marginTop={"30px"}>
-      <Text fontSize="xl" fontWeight="bold" mb={4}>
-        Welcome to the Feedback App!
-      </Text>
-      <LoginButton />
-    </Box>
-  );
-};
+// const Login = () => {
+//   return (
+//     <Box marginTop={"30px"}>
+//       <Text fontSize="xl" fontWeight="bold" mb={4}>
+//         Welcome to the Feedback App!
+//       </Text>
+//       <LoginButton />
+//     </Box>
+//   );
+// };
 
-export default Login;
+// export default Login;
+
+
+
 
 // const Login = () => {
 //   const navigate = useNavigate();

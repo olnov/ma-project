@@ -1,12 +1,18 @@
 import { createBrowserRouter } from "react-router-dom";
+
+import ProtectedRoute from "./auth/ProtectedRoute.jsx";
+//Wraps protected pages - pass in page/ component that requires authentication for access
+  // e.g. <ProtectedRoute component={<PageFileName>} />
+
+// Layouts
 import TopBarLayout from "./layouts/TopBarLayout.jsx";
 import NoTopBarLayout from "./layouts/NoTopBarLayout.jsx";
+
+// Pages
 import RequestFeedback from "./pages/RequestFeedback.jsx";
-import Login from "./pages/Login.jsx";
 import Demo from "./pages/demo.jsx";
 import ProfilePage from "./pages/Profile.jsx";
 import HomePage from "./pages/HomePage.jsx";
-
 
 const router = createBrowserRouter([
   {
@@ -17,12 +23,6 @@ const router = createBrowserRouter([
       </NoTopBarLayout>
     ),
   },
-  // {
-  //   path: "/login", 
-  //   element: (
-  //     <Login />
-  //   ),
-  // },
   {
     path: "/demo",
     element: (
@@ -35,7 +35,7 @@ const router = createBrowserRouter([
     path: "/request-feedback",
     element: (
       <TopBarLayout>
-        <RequestFeedback />
+        <ProtectedRoute component={RequestFeedback} />
       </TopBarLayout>
     ),
   },
@@ -43,7 +43,7 @@ const router = createBrowserRouter([
     path: "/profile",
     element: (
       <TopBarLayout>
-        <ProfilePage />
+        <ProtectedRoute component={ProfilePage} />
       </TopBarLayout>
     ),
   },

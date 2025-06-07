@@ -1,5 +1,5 @@
 const express = require("express");
-const { syncUser } = require("../controllers/users.controller")
+const { syncUser, getUser } = require("../controllers/users.controller")
 const checkJwt = require("../middleware/checkJwt");
 
 const router = express.Router();

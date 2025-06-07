@@ -34,4 +34,4 @@ const getUser = async (req, res) => {
     res.status(200).json({ user: user });
 };
 
-module.exports = { syncUser };
+module.exports = { syncUser, getUser };

@@ -15,7 +15,7 @@ import ProfilePage from "./pages/Profile.jsx";
 import HomePage from "./pages/HomePage.jsx";
 
 // Dev pages
-import UserAccount from "./pages/dev/UserAccount.jsx";
+import DisplayUserAccount from "./pages/dev/UserAccount.jsx"
 
 const router = createBrowserRouter([
   {
@@ -39,6 +39,14 @@ const router = createBrowserRouter([
     element: (
       <TopBarLayout>
         <ProtectedRoute component={RequestFeedback} />
+      </TopBarLayout>
+    ),
+  },
+  {
+    path: "/me",
+    element: (
+      <TopBarLayout>
+        <ProtectedRoute component={DisplayUserAccount} />
       </TopBarLayout>
     ),
   },

@@ -62,12 +62,12 @@ export const getUser = async (token) => {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({}),
     };
-    const response = await fetch(`${BACKEND_URL}/api/v1/me`, requestOptions);
+    const response = await fetch(`${BACKEND_URL}/api/v1/users/me`, requestOptions);
+    console.log("RESPONSE: ", response.json());
 
     if (!response.ok) {
-        throw new Error("Failed to fetch user profile")
+        throw new Error("Failed to fetch user profile");
     }
 
     const data = await response.json();

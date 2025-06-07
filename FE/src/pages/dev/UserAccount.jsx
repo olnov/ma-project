@@ -28,6 +28,7 @@ const DisplayUserAccount = () => {
         My Account
       </Text>
       <p>User Email: {user.email}</p>
+      <p>User Name: {user.name}</p>
       <LogoutButton />
     </Box>
   );

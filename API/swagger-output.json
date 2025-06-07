@@ -84,7 +84,7 @@
         }
       }
     },
-    "/api/v1/users/sync/sync": {
+    "/api/v1/users/sync": {
       "post": {
         "description": "",
         "responses": {
@@ -94,30 +94,7 @@
         }
       }
     },
-    "/api/v1/users/sync/me": {
-      "get": {
-        "description": "",
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "404": {
-            "description": "Not Found"
-          }
-        }
-      }
-    },
-    "/api/v1/users/me/sync": {
-      "post": {
-        "description": "",
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/v1/users/me/me": {
+    "/api/v1/users/me": {
       "get": {
         "description": "",
         "responses": {

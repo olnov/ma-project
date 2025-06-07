@@ -34,8 +34,8 @@ app.use('/api/v1/', healthRouter);
 app.use('/api/v1/docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 app.use('/api/v1/', publicRouter);
 app.use('/api/v1/', privateRouter);
-app.use('/api/v1/users/sync', usersRouter);
-app.use('/api/v1/users/me', usersRouter);
+app.use('/api/v1/users', usersRouter);
+
 
 // 404 handler
 app.use((req, res, next) => {

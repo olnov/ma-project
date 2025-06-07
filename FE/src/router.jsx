@@ -14,6 +14,9 @@ import Demo from "./pages/demo.jsx";
 import ProfilePage from "./pages/Profile.jsx";
 import HomePage from "./pages/HomePage.jsx";
 
+// Dev pages
+import UserAccount from "./pages/dev/UserAccount.jsx";
+
 const router = createBrowserRouter([
   {
     path: "/", 

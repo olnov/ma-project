@@ -14,8 +14,9 @@ const PORT = process.env.PORT || 5000;
 const healthRouter = require('./routes/health');
 const publicRouter = require('./routes/public');
 const privateRouter = require('./routes/private');
-const authRouter = require('./routes/auth'); 
+const authRouter = require('./routes/auth');  //For development
 const feedbacksRouter = require('./routes/feedback');
+const usersRouter = require('./routes/users.js');
 
 // Connect to MongoDB
 connectDB();
@@ -26,7 +27,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use('/api/v1/docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
-
 // Routes
 app.use('/api/v1/feedbacks', feedbacksRouter);
 app.use('/api/v1/auth', authRouter); // FOR DEVELOPMENT ONLY
@@ -34,6 +34,8 @@ app.use('/api/v1/', healthRouter);
 app.use('/api/v1/docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 app.use('/api/v1/', publicRouter);
 app.use('/api/v1/', privateRouter);
+app.use('/api/v1/users/sync', usersRouter);
+app.use('/api/v1/users/me', usersRouter);
 
 // 404 handler
 app.use((req, res, next) => {

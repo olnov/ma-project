@@ -5,8 +5,8 @@ import { useAuth0 } from "@auth0/auth0-react";
 import LogoutButton from "../../components/authentication/LogoutButton";
 
 const DisplayUserAccount = () => {
-  const [user, setUser] = useState({});
-  const { getAccessTokenSilently } = useAuth0();
+  const [dbUser, setDbUser] = useState({});
+  const { user, getAccessTokenSilently } = useAuth0();
 
   useEffect(() => {
     getAccessTokenSilently()
@@ -15,7 +15,7 @@ const DisplayUserAccount = () => {
     })
     .then((data) => {
       console.log("User fetched:", data);
-      setUser(data);
+      setDbUser(data);
     })
     .catch((error) => {
       console.log("Error fetching user: ", error);
@@ -28,7 +28,9 @@ const DisplayUserAccount = () => {
         My Account
       </Text>
       <p>User Email: {user.email}</p>
+      <p>User Email: {dbUser.email}</p>
       <p>User Name: {user.name}</p>
+      <p>User Name: {dbUser.name}</p>
       <LogoutButton />
     </Box>
   );

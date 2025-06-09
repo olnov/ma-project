@@ -16,6 +16,7 @@ import HomePage from "./pages/HomePage.jsx";
 
 // Dev pages
 import DisplayUserAccount from "./pages/dev/UserAccount.jsx"
+import SyncUserTestPage from "./pages/dev/SyncUser.jsx";
 
 const router = createBrowserRouter([
   {
@@ -43,6 +44,15 @@ const router = createBrowserRouter([
     ),
   },
   {
+    path: "/profile",
+    element: (
+      <TopBarLayout>
+        <ProtectedRoute component={ProfilePage} />
+      </TopBarLayout>
+    ),
+  },
+  {
+    // DEV PAGE
     path: "/me",
     element: (
       <TopBarLayout>
@@ -51,13 +61,15 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/profile",
+    // DEV PAGE
+    path: "/sync-test",
     element: (
       <TopBarLayout>
-        <ProtectedRoute component={ProfilePage} />
+        <ProtectedRoute component={SyncUserTestPage} />
       </TopBarLayout>
     ),
   },
+  
 ]);
 
 export default router;

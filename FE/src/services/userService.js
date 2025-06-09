@@ -1,7 +1,11 @@
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 // Sync user
-export const syncUser = async (token) => {
+export const syncUser = async (token, user) => {
+    console.log("LINE 5");
+    const payload = {
+        user: user
+    }
 
     const requestOptions = {
         method: 'POST',
@@ -9,50 +13,22 @@ export const syncUser = async (token) => {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({}),
+        body: JSON.stringify(payload),
     };
-    
+    console.log("LINE 14");
     const response = await fetch(`${BACKEND_URL}/api/v1/users/sync`, requestOptions);
-    
+    console.log("LINE 16");
     if (!response.ok) {
         throw new Error("Failed to sync user profile")
     }
-    
+    console.log("LINE 20");
     const data = await response.json();
+    console.log("LINE 22");
     return {
         status: response.status,
         data: data,
     };
 }
-
-// Create User
-// export const createUser = async (token, userDetails) => {
-
-//     const payload = {
-//         username: userDetails.username,
-//         firstName: userDetails.firstName,
-//         lastName: userDetails.lastName,
-//         email: userDetails.email
-//     };
-    
-//     const requestOptions = {
-//         method: 'POST',
-//         headers: {
-//             'Content-Type': 'application/json',
-//             Authorization: `Bearer ${token}`,
-//         },
-//         body: JSON.stringify(payload),
-//     };
-//     const response = await fetch(`${BACKEND_URL}/api/v1/users`, requestOptions);
-//     if (!response.ok) {
-//         return { status: response.status, message: 'Network response was not ok' };
-//     }
-//     const data = await response.json();
-//     return {
-//         status: response.status,
-//         data: data,
-//     };
-// }
 
 // Get User
 export const getUser = async (token) => {

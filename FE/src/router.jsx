@@ -1,30 +1,28 @@
 import { createBrowserRouter } from "react-router-dom";
+
+import ProtectedRoute from "./auth/ProtectedRoute.jsx";
+//Wraps protected pages - pass in page/ component that requires authentication for access
+  // e.g. <ProtectedRoute component={<PageFileName>} />
+
+// Layouts
 import TopBarLayout from "./layouts/TopBarLayout.jsx";
 import NoTopBarLayout from "./layouts/NoTopBarLayout.jsx";
+
+// Pages
 import RequestFeedback from "./pages/RequestFeedback.jsx";
-import Login from "./pages/Login.jsx"; //TODO: Remove or replace with Auth0 login page
 import Demo from "./pages/demo.jsx";
 import NotFound from "./pages/NotFound.jsx";
 import CreateCampaign from "./pages/CreateCampaign.jsx";
-import Profile from "./components/user/Profile.jsx";
 import DashboardStub from "./pages/DashboardStub.jsx";
-
+import ProfilePage from "./pages/Profile.jsx";
+import HomePage from "./pages/HomePage.jsx";
 
 const router = createBrowserRouter([
   {
-    // TEMPORARY PATH TO PROFILE FOR POST-LOGIN
     path: "/", 
     element: (
-      <TopBarLayout>
-        <Profile />
-      </TopBarLayout>
-    ),
-  },
-  {
-    path: "/login", 
-    element: (
       <NoTopBarLayout>
-        <Login />
+        <HomePage />
       </NoTopBarLayout>
     ),
   },
@@ -40,7 +38,7 @@ const router = createBrowserRouter([
     path: "/request-feedback",
     element: (
       <TopBarLayout>
-        <RequestFeedback />
+        <ProtectedRoute component={RequestFeedback} />
       </TopBarLayout>
     ),
   },
@@ -64,7 +62,7 @@ const router = createBrowserRouter([
     path: "/profile",
     element: (
       <TopBarLayout>
-        <Profile />
+        <ProtectedRoute component={ProfilePage} />
       </TopBarLayout>
     ),
   },

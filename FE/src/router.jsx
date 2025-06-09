@@ -7,6 +7,7 @@ import Demo from "./pages/demo.jsx";
 import NotFound from "./pages/NotFound.jsx";
 import CreateCampaign from "./pages/CreateCampaign.jsx";
 import Profile from "./components/user/Profile.jsx";
+import DashboardStub from "./pages/DashboardStub.jsx";
 
 
 const router = createBrowserRouter([
@@ -48,6 +49,14 @@ const router = createBrowserRouter([
     element: (
       <TopBarLayout>
         <CreateCampaign />
+      </TopBarLayout>
+    ),
+  },
+  {
+    path: "/dashboard",
+    element: (
+      <TopBarLayout>
+        <DashboardStub />
       </TopBarLayout>
     ),
   },

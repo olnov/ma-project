@@ -6,7 +6,7 @@ const CampaignSchema = new Schema({
     title: { type: String, required: true },
     description: { type: String, required: false },
     createdBy: { type: Types.ObjectId, ref: 'User', required: true },
-    project: [
+    projects: [
         {
             project: { type: Types.ObjectId, ref: 'Project', required: true },
             team: [RespondentSchema]

@@ -16,6 +16,7 @@ import { useState } from "react";
 import { FcCalendar, FcBusinessman, FcBusinesswoman } from "react-icons/fc";
 import { FaRegTrashAlt, FaEdit, FaSave } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa6";
+import { createCampaign } from "../services/CampaignService";
 
 const generateMemberId = () => crypto.randomUUID();
 
@@ -194,14 +195,14 @@ const CreateCampaign = () => {
     setProjects((prev) => prev.filter((p) => p.id !== id));
   };
 
-  const handleCreateCampaign = () => {
+  const handleCreateCampaign = async () => {
     const campaign = {
-      _id: crypto.randomUUID(),
+    //   _id: crypto.randomUUID(),
       title: campaignTitle,
       createdBy: "950aad9b-c452-417f-be62-8d4d1a3b707e",
       createdAt: new Date().toISOString(),
       projects: projects.map((p) => ({
-        _id: p._id || crypto.randomUUID(),
+        // _id: p._id, TODO: handle _id searching
         title: p.name,
         startDate: p.startDate,
         endDate: p.endDate,
@@ -215,6 +216,7 @@ const CreateCampaign = () => {
         })),
       })),
     };
+    await createCampaign(campaign);
     console.log("Campaign to save:", campaign);
   };
 

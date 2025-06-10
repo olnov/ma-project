@@ -8,9 +8,11 @@ if (!BASE_URL) {
 }
 
 const createFeedbackRequest = async (req, res) => {
-    const userId = req.sub;
+    // const userId = req.sub;
+    const userId = req.auth?.sub;
     console.log('User ID:', userId);
     console.log('Request Body:', req.body);
+    
     const feedbackRequestId = uuidv4(); // Should come from the database
     const feedbackRequestLink = generateLink(userId, feedbackRequestId);
     if (!feedbackRequestLink) {

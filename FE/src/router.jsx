@@ -11,6 +11,9 @@ import NoTopBarLayout from "./layouts/NoTopBarLayout.jsx";
 // Pages
 import RequestFeedback from "./pages/RequestFeedback.jsx";
 import Demo from "./pages/demo.jsx";
+import NotFound from "./pages/NotFound.jsx";
+import CreateCampaign from "./pages/CreateCampaign.jsx";
+import DashboardStub from "./pages/DashboardStub.jsx";
 import ProfilePage from "./pages/Profile.jsx";
 import HomePage from "./pages/HomePage.jsx";
 
@@ -40,11 +43,35 @@ const router = createBrowserRouter([
     ),
   },
   {
+    path: "/create-campaign",
+    element: (
+      <TopBarLayout>
+        <CreateCampaign />
+      </TopBarLayout>
+    ),
+  },
+  {
+    path: "/dashboard",
+    element: (
+      <TopBarLayout>
+        <DashboardStub />
+      </TopBarLayout>
+    ),
+  },
+  {
     path: "/profile",
     element: (
       <TopBarLayout>
         <ProtectedRoute component={ProfilePage} />
       </TopBarLayout>
+    ),
+  },
+  {
+    path: "*",
+    element: (
+      <NoTopBarLayout>
+        <NotFound />
+      </NoTopBarLayout>
     ),
   },
 ]);

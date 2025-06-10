@@ -1,4 +1,3 @@
-// Updated Demo with enriched campaign JSON structure
 import {
   Box,
   Button,
@@ -13,10 +12,11 @@ import {
   VStack,
   Field,
 } from "@chakra-ui/react";
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import { FcCalendar, FcBusinessman, FcBusinesswoman } from "react-icons/fc";
 import { FaRegTrashAlt, FaEdit, FaSave } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa6";
+import { createCampaign } from "../services/CampaignService";
 
 const generateMemberId = () => crypto.randomUUID();
 
@@ -166,7 +166,7 @@ const ProjectEditor = ({ initialValues, onSave, onCancel }) => {
   );
 };
 
-const Demo = () => {
+const CreateCampaign = () => {
   const [projects, setProjects] = useState([]);
   const [editingProjectId, setEditingProjectId] = useState(null);
   const [campaignTitle, setCampaignTitle] = useState("");
@@ -195,14 +195,14 @@ const Demo = () => {
     setProjects((prev) => prev.filter((p) => p.id !== id));
   };
 
-  const handleCreateCampaign = () => {
+  const handleCreateCampaign = async () => {
     const campaign = {
-      _id: crypto.randomUUID(),
+    //   _id: crypto.randomUUID(),
       title: campaignTitle,
-      userId: "950aad9b-c452-417f-be62-8d4d1a3b707e",
+      createdBy: "950aad9b-c452-417f-be62-8d4d1a3b707e",
       createdAt: new Date().toISOString(),
       projects: projects.map((p) => ({
-        _id: p._id || crypto.randomUUID(),
+        // _id: p._id, TODO: handle _id searching
         title: p.name,
         startDate: p.startDate,
         endDate: p.endDate,
@@ -216,8 +216,8 @@ const Demo = () => {
         })),
       })),
     };
+    await createCampaign(campaign);
     console.log("Campaign to save:", campaign);
-    alert("Campaign created. See console log.");
   };
 
   return (
@@ -340,4 +340,4 @@ const Demo = () => {
   );
 };
 
-export default Demo;
+export default CreateCampaign;

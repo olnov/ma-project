@@ -3,8 +3,7 @@ const { Schema, Types} = mongoose;
 const ResponseSchema = require('./response'); 
 
 const RespondentSchema = new Schema({
-    firstName: { type: String, required: true },
-    lastName: { type: String, required: true },
+    fullName: { type: String, required: true },
     email: { type: String, required: true, unique: true },
     link: { type: String, required: true, unique: true },
     responded: { type: Boolean, default: false },

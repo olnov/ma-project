@@ -1,14 +1,14 @@
 const { registerUser } = require('../services/usersStub.service.js');
 
 const register = async (req, res) => {
-    const { firstName, lastName, email, password } = req.body;
-    if (!firstName || !lastName || !email || !password) {
+    const { firstName, lastName, email } = req.body;
+    if (!firstName || !lastName || !email) {
         return res.status(400).json({ message: 'All fields are required' });
     };
 
     // Store user in the database
     try {
-        const newUser = await registerUser(firstName, lastName, email, password);
+        const newUser = await registerUser(firstName, lastName, email);
         res.status(201).json({ message: 'User registered successfully', user: newUser });
     } catch (error) {
         if (error.message === 'User already exists') {

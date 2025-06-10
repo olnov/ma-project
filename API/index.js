@@ -5,7 +5,7 @@ const cors = require('cors');
 const logger = require('morgan');
 const swaggerUi = require('swagger-ui-express');
 const swaggerFile = require('./swagger-output.json');
-const bodyParser = require('body-parser')
+// const bodyParser = require('body-parser')
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -17,6 +17,8 @@ const privateRouter = require('./routes/private');
 const authRouter = require('./routes/auth');  //For development
 const feedbacksRouter = require('./routes/feedback');
 const usersRouter = require('./routes/users.js');
+const registerStubRouter = require('./routes/userStub'); // FOR DEVELOPMENT ONLY
+const campaignRouter = require('./routes/campaign'); 
 
 // Connect to MongoDB
 connectDB();
@@ -35,6 +37,8 @@ app.use('/api/v1/docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 app.use('/api/v1/', publicRouter);
 app.use('/api/v1/', privateRouter);
 app.use('/api/v1/users', usersRouter);
+app.use('/api/v1/userStub', registerStubRouter); // FOR DEVELOPMENT ONLY
+app.use('/api/v1/campaigns', campaignRouter); 
 
 
 // 404 handler

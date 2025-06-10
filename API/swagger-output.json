@@ -90,6 +90,37 @@
         "responses": {
           "200": {
             "description": "OK"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "user": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/users/me": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
     "/api/v1/userStub/register": {
       "post": {
         "description": "",
@@ -113,7 +144,6 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "user": {
                   "firstName": {
                     "example": "any"
                   },
@@ -130,9 +160,6 @@
         }
       }
     },
-    "/api/v1/users/me": {
-      "get": {
-        "description": "",
     "/api/v1/campaigns/": {
       "post": {
         "description": "",
@@ -196,8 +223,6 @@
           "200": {
             "description": "OK"
           },
-          "404": {
-            "description": "Not Found"
           "400": {
             "description": "Bad Request"
           },

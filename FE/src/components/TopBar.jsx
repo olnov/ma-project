@@ -31,7 +31,7 @@ const TopBar = () => {
           My Campaigns
         </Link>
         <Link href="/create-campaign">
-          Campaigns
+          Create Campaign
         </Link>
       </HStack>
       <Spacer />
@@ -44,9 +44,11 @@ const TopBar = () => {
           // boxSize="40px"
         />
       </Avatar.Root>
+      <Link href="/profile">
       <Text ml={2} fontSize="sm" color="gray.600">
         John Doe
       </Text>
+      </Link>
     </Flex>
   );
 };

@@ -17,6 +17,8 @@ import { FcCalendar, FcBusinessman, FcBusinesswoman } from "react-icons/fc";
 import { FaRegTrashAlt, FaEdit, FaSave } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa6";
 import { createCampaign } from "../services/CampaignService";
+import { toaster } from "@/components/ui/toaster";
+import { useNavigate } from "react-router-dom";
 
 const generateMemberId = () => crypto.randomUUID();
 
@@ -170,6 +172,7 @@ const CreateCampaign = () => {
   const [projects, setProjects] = useState([]);
   const [editingProjectId, setEditingProjectId] = useState(null);
   const [campaignTitle, setCampaignTitle] = useState("");
+  const navigate = useNavigate();
 
   const handleSave = (updatedProject) => {
     setProjects((prev) => {
@@ -197,7 +200,7 @@ const CreateCampaign = () => {
 
   const handleCreateCampaign = async () => {
     const campaign = {
-    //   _id: crypto.randomUUID(),
+      //   _id: crypto.randomUUID(),
       title: campaignTitle,
       createdBy: "950aad9b-c452-417f-be62-8d4d1a3b707e",
       createdAt: new Date().toISOString(),
@@ -216,7 +219,21 @@ const CreateCampaign = () => {
         })),
       })),
     };
-    await createCampaign(campaign);
+    const newCampaign = await createCampaign(campaign);
+    if (newCampaign.status === 201) {
+      toaster.create({
+        title: "Campaign created",
+        description: "Your campaign has been created successfully.",
+        type: "success",
+      });
+      navigate('/dashboard');
+    } else {
+      toaster.create({
+        title: "Error creating campaign",
+        description: "There was an error creating your campaign.",
+        type: "error",
+      });
+    }
     console.log("Campaign to save:", campaign);
   };
 

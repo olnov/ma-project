@@ -1,4 +1,12 @@
-import { Flex, Heading, Spacer, Button, Avatar, Text } from "@chakra-ui/react";
+import {
+  Flex,
+  Heading,
+  Spacer,
+  Link,
+  Avatar,
+  Text,
+  HStack,
+} from "@chakra-ui/react";
 
 const TopBar = () => {
   return (
@@ -18,6 +26,14 @@ const TopBar = () => {
       rounded={"md"}
     >
       <Heading size="md">Makers Agency</Heading>
+      <HStack spacing={4} ml={6}>
+        <Link href="/dashboard">
+          My Campaigns
+        </Link>
+        <Link href="/create-campaign">
+          Create Campaign
+        </Link>
+      </HStack>
       <Spacer />
       <Avatar.Root size="sm" name="John Doe">
         <Avatar.Fallback name="John Doe" />
@@ -28,9 +44,11 @@ const TopBar = () => {
           // boxSize="40px"
         />
       </Avatar.Root>
+      <Link href="/profile">
       <Text ml={2} fontSize="sm" color="gray.600">
-          John Doe
+        John Doe
       </Text>
+      </Link>
     </Flex>
   );
 };

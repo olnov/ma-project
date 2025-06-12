@@ -48,7 +48,7 @@ export const getUser = async (token) => {
     };
 };
 
-export const updateUserProfile = async (token, updates) => {
+export const patchUserProfile = async (token, updates) => {
     
     const payload = {
         updates: updates
@@ -63,7 +63,7 @@ export const updateUserProfile = async (token, updates) => {
         body: JSON.stringify(payload),
     };
 
-    const response = await fetch(`${BACKEND_URL}/api/v1/users/me`, requestOptions);
+    const response = await fetch(`${BACKEND_URL}/api/v1/users/me/update-profile`, requestOptions);
 
     if (!response.ok) {
         throw new Error("Failed to update user profile");
@@ -74,4 +74,4 @@ export const updateUserProfile = async (token, updates) => {
         status: response.status,
         data: data,
     };
-}
+};

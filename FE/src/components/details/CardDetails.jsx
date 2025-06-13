@@ -5,7 +5,7 @@ import { toaster } from "@/components/ui/toaster";
 import { BiCopy } from "react-icons/bi";
 
 const CardDetails = (campaignId) => {
-  const [campaingn, setCampaign] = useState(null);
+  const [campaign, setCampaign] = useState(null);
 
   const fetchCampaignDetails = async () => {
     const response = await getCampaignById(campaignId.campaignId);
@@ -46,23 +46,23 @@ const CardDetails = (campaignId) => {
     }
   }, [campaignId.campaignId]);
 
-  console.log("Campaign Details:", campaingn);
+  console.log("Campaign Details:", campaign);
 
   return (
     <>
-      {campaingn ? (
+      {campaign ? (
         <Card.Root>
           <Card.Header>
             <Text fontSize="2xl" fontWeight="bold">
-              {campaingn.title}
+              {campaign.title}
             </Text>
             <Badge colorPalette={"green"} size={"md"}>
-              Created By: {campaingn.createdBy.email}
+              Created By: {campaign.createdBy.email}
             </Badge>
           </Card.Header>
           <Card.Body>
             <List.Root>
-              {campaingn.projects.map((p) => (
+              {campaign.projects.map((p) => (
                 <>
                   <List.Item key={p._id}>
                     <Text fontSize={"lg"} fontWeight={"bold"}>

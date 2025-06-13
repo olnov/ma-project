@@ -48,7 +48,20 @@ const getCampaignsByUser = async (userId) => {
   return Campaign.find({ createdBy: userId }).populate("projects.project");
 };
 
+const getCampaignByIdService = async (campaignId) => {
+  if (!campaignId) {
+    throw new Error("Campaign ID is not set");
+  }
+  const campaign = await Campaign.findById(campaignId).populate("projects.project").populate("createdBy", "email fullName");
+  if (!campaign) {
+    throw new Error("Campaign not found");
+  }
+  return campaign;
+}
+
+
 module.exports = {
   createCampaign,
   getCampaignsByUser,
+  getCampaignByIdService,
 };

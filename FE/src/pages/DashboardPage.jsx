@@ -1,5 +1,6 @@
 import { getCampaignsByUser } from "../services/CampaignService";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Box,
   Button,
@@ -12,9 +13,10 @@ import {
   Grid,
 } from "@chakra-ui/react";
 
-const DashboardStub = () => {
+const DashboardPage = () => {
   const [campaigns, setCampaigns] = useState([]);
   const [fileteredCampaigns, setFilteredCampaigns] = useState([]);
+  const navigate = useNavigate();
 
   const fetchCampaigns = async () => {
     const stubUserId = "6845d0ff6b26dd84fbe38c72"; // Replace with actual user ID logic
@@ -102,7 +104,7 @@ const DashboardStub = () => {
                           .reduce((sum, count) => sum + count, 0)}
                       </Text>
                     </Box>
-                    <Button size="xm" variant="surface">
+                    <Button size="xm" variant="surface" onClick={() => navigate(`/details/${campaign._id}`)}>
                       Details
                     </Button>
                   </Flex>
@@ -161,4 +163,4 @@ const DashboardStub = () => {
   );
 };
 
-export default DashboardStub;
+export default DashboardPage;

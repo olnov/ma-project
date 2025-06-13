@@ -31,7 +31,32 @@ export const getCampaignsByUser = async (userId) => {
             // Authorization: `Bearer ${token}`, 
         },
     };
-    const response = await fetch(`${BACKEND_URL}/api/v1/campaigns/${userId}`, requestOptions);
+    const response = await fetch(`${BACKEND_URL}/api/v1/campaigns/user/${userId}`, requestOptions);
+    if (!response.ok) {
+        return { status: response.status, message: 'Network response was not ok' };
+    }
+    const data = await response.json();
+    return {
+        status: response.status,
+        data: data,
+    };
+};
+
+// TODO: Add token authentication
+export const getCampaignById = async (campaignId) => {
+    console.log('Fetching campaign with ID:', campaignId);
+    if (!campaignId) {
+        return { status: 400, message: 'Campaign ID is not set' };
+    }
+    const requestOptions = {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            // Authorization: `Bearer ${token}`, 
+        },
+    };
+    const response = await fetch(`${BACKEND_URL}/api/v1/campaigns/campaign/${campaignId}`, requestOptions);
+    console.log('Response:', response);
     if (!response.ok) {
         return { status: response.status, message: 'Network response was not ok' };
     }

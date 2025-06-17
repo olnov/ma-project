@@ -22,6 +22,7 @@ const AuthSync = () => {
         const runSync = async () => {
             try {
                 const token = await getAccessTokenSilently();
+                console.log("USER = ", user);
                 await syncUser(token, user);
                 console.log("user synced once this session");
                 // hasSynced.setItem("hasSynced", "true"); //Attempt to make sync happen only once per session

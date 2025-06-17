@@ -79,7 +79,7 @@ const updateUserLastName = async (auth0Sub, lastName) => {
         console.error("Error updating user's lastName field:", error);
         throw error
     }
-}
+};
 
 // with mongoose/ vanilla JS
 const updateUserFirstName = async (auth0Sub, firstName) => {

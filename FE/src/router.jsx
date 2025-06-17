@@ -18,8 +18,11 @@ import ProfilePage from "./pages/Profile.jsx";
 import HomePage from "./pages/HomePage.jsx";
 
 // Dev pages
-import DisplayUserAccount from "./pages/dev/UserAccount.jsx"
+import DisplayUserAccount from "./pages/UserProfile.jsx"
 import SyncUserTestPage from "./pages/dev/SyncUser.jsx";
+import UpdateUserProfile from "./components/dev/UpdateUserProfile.jsx";
+import UserAccount from "./components/dev/UserAccount.jsx";
+import UserProfile from "./pages/UserProfile.jsx";
 
 const router = createBrowserRouter([
   {
@@ -62,20 +65,20 @@ const router = createBrowserRouter([
       </TopBarLayout>
     ),
   },
-  {
-    path: "/profile",
-    element: (
-      <TopBarLayout>
-        <ProtectedRoute component={ProfilePage} />
-      </TopBarLayout>
-    ),
-  },
+  // {
+  //   path: "/profile",
+  //   element: (
+  //     <TopBarLayout>
+  //       <ProtectedRoute component={ProfilePage} />
+  //     </TopBarLayout>
+  //   ),
+  // },
   {
     // DEV PAGE
     path: "/me",
     element: (
       <TopBarLayout>
-        <ProtectedRoute component={DisplayUserAccount} />
+        <ProtectedRoute component={UserProfile} />
       </TopBarLayout>
     ),
   },
@@ -88,6 +91,15 @@ const router = createBrowserRouter([
       </TopBarLayout>
     ),
   },
+  // {
+  //   // DEV PAGE
+  //   path: "/update-profile",
+  //   element: (
+  //     <TopBarLayout>
+  //       <ProtectedRoute component={UpdateUserProfile} />
+  //     </TopBarLayout>
+  //   ),
+  // },
   {
     path: "*",
     element: (

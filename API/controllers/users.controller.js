@@ -62,12 +62,13 @@ const syncUser = async (req, res) => {
     if (!user) {
       user = await createUser(auth0Sub, req.body.user);
       console.log("New user created:", user);
+      res.status(200).json({ message: "User added to database", user: user });
     } else {
       // user = await updateUserprofile(auth0Sub, req.body.user);
       console.log("User already in database:", user);
+      res.status(200).json({ message: "User already exists", user: user });
     }
 
-    res.status(200).json({ message: "User synced", user: user });
 
   } catch (error) {
     console.error("Error syncing user:", error);

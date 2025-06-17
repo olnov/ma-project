@@ -15,7 +15,7 @@ import NotFound from "./pages/NotFound.jsx";
 import CreateCampaign from "./pages/CreateCampaign.jsx";
 import DashboardStub from "./pages/DashboardStub.jsx";
 import HomePage from "./pages/HomePage.jsx";
-import UserProfile from "./pages/UserProfile.jsx";
+import UserAccount from "./pages/UserAccount.jsx";
 
 // Dev pages
 import SyncUserTestPage from "./pages/dev/SyncUser.jsx";
@@ -62,10 +62,10 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/profile",
+    path: "/me",
     element: (
       <TopBarLayout>
-        <ProtectedRoute component={UserProfile} />
+        <ProtectedRoute component={UserAccount} />
       </TopBarLayout>
     ),
   },

@@ -23,10 +23,10 @@ import { useEffect, useState } from "react";
 import { getUser, patchUserProfile } from "../services/userService";
 
 import LogoutButton from "../components/authentication/LogoutButton";
-import UserProfileView from "../components/user/UserProfileView";
-import UserProfileForm from "../components/user/UserProfileForm";
+import UserAccountView from "../components/user/UserAccountView";
+import UserAccountForm from "../components/user/UserAccountForm";
 
-const UserProfile = () => {
+const UserAccount = () => {
   // console.log("typeof UserProfileView:", typeof UserProfileView);
   // console.log("UserProfileView:", UserProfileView);
 
@@ -90,13 +90,13 @@ const UserProfile = () => {
         </Text>
 
       {editing? (
-        <UserProfileForm
+        <UserAccountForm
           dbUser={dbUser}
           onSave={handleUpdate}
           onCancel={() => setEditing(false)}
         />
       ) : (
-        <UserProfileView
+        <UserAccountView
           dbUser={dbUser}
           onEdit={() => setEditing(true)}
         />
@@ -106,7 +106,7 @@ const UserProfile = () => {
   );
 };
 
-export default UserProfile;
+export default UserAccount;
 
 // const DisplayUserAccount = () => {
 

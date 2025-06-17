@@ -16,7 +16,7 @@ import { FaRegTrashAlt, FaEdit, FaSave } from "react-icons/fa";
 import { FcCalendar, FcBusinessman, FcBusinesswoman } from "react-icons/fc";
 import { FaPlus } from "react-icons/fa6";
 
-const UserProfileView = ({ dbUser, onEdit }) => {
+const UserAccountView = ({ dbUser, onEdit }) => {
     return (
         <Card.Root
             size="sm"
@@ -83,4 +83,4 @@ const UserProfileView = ({ dbUser, onEdit }) => {
     );
 };
 
-export default UserProfileView;
+export default UserAccountView;

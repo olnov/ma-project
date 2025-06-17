@@ -17,7 +17,7 @@ import { FcCalendar, FcBusinessman, FcBusinesswoman } from "react-icons/fc";
 import { FaRegTrashAlt, FaEdit, FaSave } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa6";
 
-const UserProfileForm = ({ dbUser, onSave, onCancel }) => {
+const UserAccountForm = ({ dbUser, onSave, onCancel }) => {
     const [formData, setFormData] = useState({
         firstName: dbUser.firstName || "",
         lastName: dbUser.lastName || "",
@@ -114,4 +114,4 @@ const UserProfileForm = ({ dbUser, onSave, onCancel }) => {
     );
 };
 
-export default UserProfileForm;
+export default UserAccountForm;

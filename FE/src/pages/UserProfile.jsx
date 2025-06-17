@@ -61,9 +61,9 @@ const UserProfile = () => {
 
   const handleUpdate = async (updateData) => {
     try {
-      const token = getAccessTokenSilently();
+      const token = await getAccessTokenSilently();
       const res = await patchUserProfile(token, updateData);
-      console.log("USER UPDATED!!!", res.data.user);
+      console.log("User profile updated:", res.data.user);
       setDbUser(res.data.user);
       return res.data.user;
     } catch (error) {

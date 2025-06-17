@@ -30,6 +30,11 @@ const UserProfileForm = ({ dbUser, onSave, onCancel }) => {
         setFormData((prev) => ({ ...prev, [name]: value }));
     };
 
+    // const handleSubmit = (e) => {
+    //     e.preventDefault();
+    //     onSave(formData);
+    // }
+
     return (
         <Card.Root
             bgColor="orange.50"
@@ -100,8 +105,8 @@ const UserProfileForm = ({ dbUser, onSave, onCancel }) => {
                     <Input name="username" value={formData.username} onChange={handleChange} placeholder="Username" /> */}
 
                     <HStack justify="flex-end">
-                        <Button variant="ghost" onClick={onCancel}>Cancel</Button>
-                        <Button colorScheme="blue" onClick={() => onSave(formData)}>Save</Button>
+                        <Button variant="ghost" onClick={onCancel} type="button">Cancel</Button>
+                        <Button colorScheme="blue" onClick={() => onSave(formData)} type="submit">Save</Button>
                     </HStack>
                 </VStack>
             </Card.Body>

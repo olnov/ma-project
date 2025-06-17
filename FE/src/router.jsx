@@ -17,9 +17,9 @@ import DashboardPage from "./pages/DashboardPage.jsx";
 import ProfilePage from "./pages/Profile.jsx";
 import HomePage from "./pages/HomePage.jsx";
 import DetailsPage from "./pages/DetailsPage.jsx";
+import UserAccount from "./pages/UserAccount.jsx";
 
 // Dev pages
-import DisplayUserAccount from "./pages/dev/UserAccount.jsx"
 import SyncUserTestPage from "./pages/dev/SyncUser.jsx";
 
 const router = createBrowserRouter([
@@ -72,19 +72,10 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/profile",
-    element: (
-      <TopBarLayout>
-        <ProtectedRoute component={ProfilePage} />
-      </TopBarLayout>
-    ),
-  },
-  {
-    // DEV PAGE
     path: "/me",
     element: (
       <TopBarLayout>
-        <ProtectedRoute component={DisplayUserAccount} />
+        <ProtectedRoute component={UserAccount} />
       </TopBarLayout>
     ),
   },

@@ -13,8 +13,10 @@ import RequestFeedback from "./pages/RequestFeedback.jsx";
 import Demo from "./pages/demo.jsx";
 import NotFound from "./pages/NotFound.jsx";
 import CreateCampaign from "./pages/CreateCampaign.jsx";
-import DashboardStub from "./pages/DashboardStub.jsx";
+import DashboardPage from "./pages/DashboardPage.jsx";
+import ProfilePage from "./pages/Profile.jsx";
 import HomePage from "./pages/HomePage.jsx";
+import DetailsPage from "./pages/DetailsPage.jsx";
 import UserAccount from "./pages/UserAccount.jsx";
 
 // Dev pages
@@ -57,7 +59,15 @@ const router = createBrowserRouter([
     path: "/dashboard",
     element: (
       <TopBarLayout>
-        <DashboardStub />
+        <DashboardPage />
+      </TopBarLayout>
+    ),
+  },
+  {
+    path: "/details/:campaignId",
+    element: (
+      <TopBarLayout>
+        <ProtectedRoute component={DetailsPage} />
       </TopBarLayout>
     ),
   },

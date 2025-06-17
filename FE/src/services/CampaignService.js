@@ -66,3 +66,27 @@ export const getCampaignById = async (campaignId) => {
         data: data,
     };
 };
+
+export const getCampaignByLink = async (linkUuid) => {
+    console.log('Fetching campaign with link:', linkUuid);
+    if (!linkUuid) {
+        return { status: 400, message: 'Link is not set' };
+    }
+    const requestOptions = {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            // Authorization: `Bearer ${token}`, 
+        },
+    };
+    const response = await fetch(`${BACKEND_URL}/api/v1/campaigns/link/${linkUuid}`, requestOptions);
+    if (!response.ok) {
+        return { status: response.status, message: 'Network response was not ok' };
+    }
+    const data = await response.json();
+    console.log('Campaign data:', data);
+    return {
+        status: response.status,
+        data: data,
+    };
+}

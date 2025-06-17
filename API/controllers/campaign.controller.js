@@ -1,4 +1,9 @@
-const { createCampaign, getCampaignsByUser, getCampaignByIdService } = require("../services/campaign.service");
+const { 
+  createCampaign, 
+  getCampaignsByUser, 
+  getCampaignByIdService, 
+  getCampaingnByLinkService, 
+} = require("../services/campaign.service");
 
 const createNewCampaign = async (req, res) => {
   const { title, description, createdBy, projects } = req.body;
@@ -55,9 +60,29 @@ const getCampaignByIdController = async (req, res) => {
   }
 };
 
+const getCampaingnByLinkController = async (req, res) => {
+  const linkUuid = req.params.linkUuid;
+  console.log("Fetching campaign with link:", linkUuid);
+  if (!linkUuid) {
+    return res.status(400).json({ message: "Link is not set" });
+  }
+  try {
+    const campaign = await getCampaingnByLinkService(linkUuid);
+    if (!campaign) {
+      return res.status(404).json({ message: "Campaign not found" });
+    }
+    res.status(200).json(campaign);
+  } catch (error) {
+    console.error("Error fetching campaign by link:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+}
+
+
 
 module.exports = {
   createNewCampaign,
   getCampaignsByUserId,
   getCampaignByIdController,
+  getCampaingnByLinkController,
 };

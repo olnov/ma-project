@@ -100,6 +100,40 @@ const getCampaingnByLinkService = async (linkUuid) => {
       "responseContents": teamMember.responses || "",
     },
   }
+};
+
+const saveCampaignFeedbackService = async (campaignId, linkUuid, responseContents) => {
+  if (!campaignId || !linkUuid || !responseContents) {
+    throw new Error("Campaign ID, team member link, and response contents are required");
+  }
+  const campaign = await Campaign.findById(campaignId);
+  if (!campaign) {
+    throw new Error("Campaign not found");
+  }
+  const projectEntry = campaign.projects.find((p) => p.team.some((member) => member.link.endsWith(linkUuid)));
+  if (!projectEntry) {
+    throw new Error("Project entry with the specified link not found");
+  }
+  const savedFeedback = await Campaign.updateOne(
+    { _id: campaignId, "projects.team.link": { $regex: `${linkUuid}$` } },
+    { 
+      $set: { "projects.$[project].team.$[member].responded": true },
+      $push: { "projects.$[project].team.$[member].responses": { content:responseContents} },
+    },
+    {
+      arrayFilters: [
+        { "project.project": projectEntry.project._id },
+        { "member.link": { $regex: `${linkUuid}$` } }
+      ]
+    }
+  );
+  if (savedFeedback.modifiedCount === 0) {
+    throw new Error("Failed to save feedback");
+  }
+  return {
+    status: "success",
+    message: "Feedback saved successfully",
+  };
 }
 
 
@@ -108,4 +142,5 @@ module.exports = {
   getCampaignsByUser,
   getCampaignByIdService,
   getCampaingnByLinkService,
+  saveCampaignFeedbackService,
 };

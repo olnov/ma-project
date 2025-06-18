@@ -90,3 +90,29 @@ export const getCampaignByLink = async (linkUuid) => {
         data: data,
     };
 }
+
+export const saveCampaignFeedback = async (campaignId, linkUuid, responseContents) => {
+    console.log('Saving campaign feedback:', { campaignId, linkUuid, responseContents });
+    if (!campaignId || !linkUuid || !responseContents) {
+        return { status: 400, message: 'Campaign ID, team member link, and response contents are required' };
+    }
+    const requestOptions = {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+            // Authorization: `Bearer ${token}`, 
+        },
+        body: JSON.stringify({ campaignId, linkUuid, responseContents }),
+    };
+
+    console.log('Request options:', requestOptions);
+    const response = await fetch(`${BACKEND_URL}/api/v1/campaigns/save-feedback/`, requestOptions);
+    if (!response.ok) {
+        return { status: response.status, message: 'Network response was not ok' };
+    }
+    const data = await response.json();
+    return {
+        status: response.status,
+        data: data,
+    };
+}

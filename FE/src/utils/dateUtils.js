@@ -21,3 +21,12 @@ export function formatDateRange(startStr, endStr) {
     return `${day.format(start)} ${month.format(start)} ${year.format(start)} – ${day.format(end)} ${month.format(end)} ${year.format(end)}`;
   }
 }
+
+export function formatDate(dateStr) {
+  const date = new Date(dateStr);
+  return new Intl.DateTimeFormat('en-GB', {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric'
+  }).format(date);
+}

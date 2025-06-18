@@ -2,7 +2,8 @@ const {
   createCampaign, 
   getCampaignsByUser, 
   getCampaignByIdService, 
-  getCampaingnByLinkService, 
+  getCampaingnByLinkService,
+  saveCampaignFeedbackService,
 } = require("../services/campaign.service");
 
 const createNewCampaign = async (req, res) => {
@@ -78,6 +79,22 @@ const getCampaingnByLinkController = async (req, res) => {
   }
 }
 
+const saveCampaignFeedbackController = async (req, res) => {
+  const { campaignId, linkUuid, responseContents } = req.body;
+  if (!campaignId || !linkUuid || !responseContents) {
+    return res.status(400).json({ message: "Campaign ID, link UUID, and feedback are required" });
+  }
+  try {
+    const updatedCampaign = await saveCampaignFeedbackService(campaignId, linkUuid, responseContents);
+    if (!updatedCampaign) {
+      return res.status(404).json({ message: "Campaign not found or feedback not saved" });
+    }
+    res.status(200).json({ message: "Feedback saved successfully", campaign: updatedCampaign });
+  } catch (error) {
+    console.error("Error saving campaign feedback:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+}
 
 
 module.exports = {
@@ -85,4 +102,5 @@ module.exports = {
   getCampaignsByUserId,
   getCampaignByIdController,
   getCampaingnByLinkController,
+  saveCampaignFeedbackController,
 };

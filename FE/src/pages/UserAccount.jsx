@@ -18,8 +18,9 @@ import { FaRegTrashAlt, FaEdit, FaSave } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa6";
 
 import { useAuth0 } from "@auth0/auth0-react";
-// import { toaster } from "@/components/ui/toaster";
+import { toaster } from "@/components/ui/toaster";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { getUser, patchUserProfile } from "../services/userService";
 
 import LogoutButton from "../components/authentication/LogoutButton";
@@ -37,6 +38,7 @@ const UserAccount = () => {
   const [dbUser, setDbUser] = useState(null);
   const [editing, setEditing] = useState(false);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
 
@@ -64,10 +66,25 @@ const UserAccount = () => {
       const token = await getAccessTokenSilently();
       const res = await patchUserProfile(token, updateData);
       console.log("User profile updated:", res.data.user);
+
       setDbUser(res.data.user);
+
+      setEditing(false);
+
+      toaster.create({
+        title: "User account updated",
+        description: `Your account details were updated successfully`,
+        type: "success",
+      });
       return res.data.user;
+
     } catch (error) {
       console.error("Error sending patch request:", error);
+      toaster.create({
+        title: "Error",
+        description: `Unable to update your account details.`,
+        type: "error",
+      });
     }
   };
 

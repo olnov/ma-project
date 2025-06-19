@@ -17,63 +17,89 @@ import { FaRegTrashAlt, FaEdit, FaSave } from "react-icons/fa";
 const UserAccountView = ({ dbUser, onEdit }) => {
     return (
         <Card.Root
-            size="sm"
             bgColor="orange.50"
             shadow="md"
             maxW="600px"
             mx="auto"
-            my={6}
-        >
-            <Card.Body padding={3}>
-                <VStack spacing={3} align="stretch">
-                    <Text fontWeight="bold">
-                        Name:
-                    </Text>
-                    <Text fontSize="sm" color="gray.600">
-                        {dbUser.firstName} {dbUser.lastName}
-                    </Text>
+            my={6}>
+        
+            <Card.Body>
+                <VStack spacing={4} align="stretch">
+                    <Field.Root mt={3}>
+                        <Field.Label fontWeight="bold">
+                            First name: <Text as="span" color="red.500" ml={1} opacity={0}>*</Text>
+                        </Field.Label>
+                        <Box
+                            borderRadius="md"
+                            py={2}
+                            px={3}>
+                            <Text fontSize="sm" color="gray.600">
+                                {dbUser.firstName}
+                            </Text>
+                        </Box>
+                    </Field.Root>
 
-                    <Text fontWeight="bold">
-                        Username:
-                    </Text>
-                    <Text fontSize="sm" color="gray.600">
-                        {dbUser.username}
-                    </Text>
+                    <Field.Root mt={3}>
+                        <Field.Label fontWeight="bold">
+                            Last name: <Text as="span" color="red.500" ml={1} opacity={0}>*</Text>
+                        </Field.Label>
+                        <Box
+                            borderRadius="md"
+                            py={2}
+                            px={3}>
+                            <Text fontSize="sm" color="gray.600">
+                                {dbUser.lastName}
+                            </Text>
+                        </Box>
+                    </Field.Root>
 
-                    <Text fontWeight="bold">
-                        {/* <IconButton
-                            size="xs"
-                            variant="outline"
-                            colorPalette="gray"
-                            aria-label="Edit profile"
-                            onClick={onEdit}>
-                            <FaEdit size={14} />
-                        </IconButton> */}
-                        Email:
-                    </Text>
-                    <Text fontSize="sm" color="gray.600">
-                        {dbUser.email}
-                    </Text>
+                    <Field.Root mt={3}>
+                        <Field.Label fontWeight="bold">
+                            Username:
+                        </Field.Label>
+                        <Box
+                            borderRadius="md"
+                            py={2}
+                            px={3}>
+                            <Text fontSize="sm" color="gray.600">
+                                {dbUser.username}
+                            </Text>
+                        </Box>
+                    </Field.Root>
 
-                    {/* <HStack > */}
+                    <Field.Root mt={3}>
+                        <Field.Label fontWeight="bold">
+                            {/* <IconButton
+                                size="xs"
+                                variant="outline"
+                                colorPalette="gray"
+                                aria-label="Edit profile"
+                                onClick={onEdit}>
+                                <FaEdit size={14} />
+                            </IconButton> */}
+                            Email: <Text as="span" color="red.500" ml={1} opacity={0}>*</Text>
+                        </Field.Label>
+                        <Box
+                            borderRadius="md"
+                            py={2}
+                            px={3}>
+                            <Text fontSize="sm" color="gray.600">
+                                {dbUser.email}
+                            </Text>
+                        </Box>
+                    </Field.Root>
+
+                    <HStack justify="flex-end">
                         <Button
-                            size="sm"
-                            variant="surface"
+                            // size="sm"
+                            // variant="surface"
                             colorScheme="blue"
-                            leftIcon={<FaEdit />}
+                            // leftIcon={<FaEdit />}
                             onClick={onEdit}
                             >
                             Edit
                         </Button>
-                        {/* <IconButton
-                            size="sm"
-                            variant="outline"
-                            colorPalette="gray"
-                            aria-label="Edit profile"
-                            onClick={onEdit}>
-                            <FaEdit size={14} />
-                        </IconButton> */}
-                    {/* </HStack> */}
+                    </HStack>
                 </VStack>
             </Card.Body>
         </Card.Root>

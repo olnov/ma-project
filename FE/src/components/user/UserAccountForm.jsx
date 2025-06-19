@@ -65,7 +65,7 @@ const UserAccountForm = ({ dbUser, onSave, onCancel }) => {
                         <Field.ErrorText>This field is required</Field.ErrorText>
                     </Field.Root>
 
-                    <Field.Root required mt={3}>
+                    <Field.Root mt={3}>
                         <Field.Label fontWeight="bold">
                             Username:
                         </Field.Label>

@@ -3,19 +3,31 @@ import { getCampaignById } from "../../services/CampaignService";
 import { Text, Card, List, VStack, Badge, Button } from "@chakra-ui/react";
 import { toaster } from "@/components/ui/toaster";
 import { BiCopy } from "react-icons/bi";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const CardDetails = (campaignId) => {
   const [campaign, setCampaign] = useState(null);
+    const { getAccessTokenSilently } = useAuth0();
 
   const fetchCampaignDetails = async () => {
-    const response = await getCampaignById(campaignId.campaignId);
-    if (response.status === 200) {
-      setCampaign(response.data);
-    } else {
-      console.error("Failed to fetch campaign details:", response.message);
+    try {
+      const token = await getAccessTokenSilently();
+      const response = await getCampaignById(token, campaignId.campaignId);
+      if (response.status === 200) {
+        setCampaign(response.data);
+      } else {
+        console.error("Failed to fetch campaign details:", response.message);
+        toaster.create({
+          title: "Error",
+          description: response.message || "Failed to fetch campaign details",
+          type: "error",
+        });
+      }
+    } catch (error) {
+      console.log("Token error:", error);
       toaster.create({
         title: "Error",
-        description: response.message || "Failed to fetch campaign details",
+        description: "Token missing or expired. Please log in again.",
         type: "error",
       });
     }

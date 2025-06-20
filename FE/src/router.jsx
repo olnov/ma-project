@@ -18,6 +18,7 @@ import DashboardPage from "./pages/DashboardPage.jsx";
 import HomePage from "./pages/HomePage.jsx";
 import DetailsPage from "./pages/DetailsPage.jsx";
 import UserAccount from "./pages/UserAccount.jsx";
+import FeedbackFormPage from "./pages/FeedBackFormPage.jsx";
 
 // Dev pages
 import SyncUserTestPage from "./pages/dev/SyncUser.jsx";
@@ -28,6 +29,14 @@ const router = createBrowserRouter([
     element: (
       <NoTopBarLayout>
         <HomePage />
+      </NoTopBarLayout>
+    ),
+  },
+  {
+    path: "/feedback/:linkUuid",
+    element: (
+      <NoTopBarLayout>
+        <FeedbackFormPage />
       </NoTopBarLayout>
     ),
   },

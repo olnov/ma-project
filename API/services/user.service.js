@@ -62,39 +62,39 @@ const updateUserProfile = async (auth0Sub, updates) => {
     }
 };
 
-const updateUserLastName = async (auth0Sub, lastName) => {
-    const user = await getUserByauth0Sub(auth0Sub);
+// const updateUserLastName = async (auth0Sub, lastName) => {
+//     const user = await getUserByauth0Sub(auth0Sub);
 
-    try {
-        const result = await user.updateOne({
-            $set: {
-                lastName: lastName
-            },
-            new: true
-        });
-        console.log("User's lastName field successfully updated. User's lastName now", user.lastName);
-        return result;
+//     try {
+//         const result = await user.updateOne({
+//             $set: {
+//                 lastName: lastName
+//             },
+//             new: true
+//         });
+//         console.log("User's lastName field successfully updated. User's lastName now", user.lastName);
+//         return result;
 
-    } catch (error) {
-        console.error("Error updating user's lastName field:", error);
-        throw error
-    }
-};
+//     } catch (error) {
+//         console.error("Error updating user's lastName field:", error);
+//         throw error
+//     }
+// };
 
-// with mongoose/ vanilla JS
-const updateUserFirstName = async (auth0Sub, firstName) => {
-    const user = await getUserByauth0Sub(auth0Sub);
+// // with mongoose/ vanilla JS
+// const updateUserFirstName = async (auth0Sub, firstName) => {
+//     const user = await getUserByauth0Sub(auth0Sub);
 
-    try {
-        user.firstName = firstName;
-        await user.save();
-        console.log("User's firstName field successfully updated. User's firstName now", user.firstName);
-        return user;
+//     try {
+//         user.firstName = firstName;
+//         await user.save();
+//         console.log("User's firstName field successfully updated. User's firstName now", user.firstName);
+//         return user;
 
-    } catch (error) {
-        console.log("Error updating users firstName field:", error);
-        throw error;
-    }
-};
+//     } catch (error) {
+//         console.log("Error updating users firstName field:", error);
+//         throw error;
+//     }
+// };
 
 module.exports = { getUserByauth0Sub, createUser, updateUserProfile};

@@ -13,9 +13,6 @@ import {
     Field,
 } from "@chakra-ui/react";
 import { useState } from "react";
-import { FcCalendar, FcBusinessman, FcBusinesswoman } from "react-icons/fc";
-import { FaRegTrashAlt, FaEdit, FaSave } from "react-icons/fa";
-import { FaPlus } from "react-icons/fa6";
 
 const UserAccountForm = ({ dbUser, onSave, onCancel }) => {
     const [formData, setFormData] = useState({
@@ -29,11 +26,6 @@ const UserAccountForm = ({ dbUser, onSave, onCancel }) => {
         const { name, value } = e.target;
         setFormData((prev) => ({ ...prev, [name]: value }));
     };
-
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-    //     onSave(formData);
-    // }
 
     return (
         <Card.Root
@@ -73,7 +65,7 @@ const UserAccountForm = ({ dbUser, onSave, onCancel }) => {
                         <Field.ErrorText>This field is required</Field.ErrorText>
                     </Field.Root>
 
-                    <Field.Root required mt={3}>
+                    <Field.Root mt={3}>
                         <Field.Label fontWeight="bold">
                             Username:
                         </Field.Label>
@@ -99,10 +91,6 @@ const UserAccountForm = ({ dbUser, onSave, onCancel }) => {
                         />
                         <Field.ErrorText>This field is required</Field.ErrorText>
                     </Field.Root>
-
-                    {/* <Input name="firstName" value={formData.firstName} onChange={handleChange} placeholder="First Name" />
-                    <Input name="lastName" value={formData.lastName} onChange={handleChange} placeholder="Last Name" />
-                    <Input name="username" value={formData.username} onChange={handleChange} placeholder="Username" /> */}
 
                     <HStack justify="flex-end">
                         <Button variant="ghost" onClick={onCancel} type="button">Cancel</Button>

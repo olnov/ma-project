@@ -18,8 +18,9 @@ import { FaRegTrashAlt, FaEdit, FaSave } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa6";
 
 import { useAuth0 } from "@auth0/auth0-react";
-// import { toaster } from "@/components/ui/toaster";
+import { toaster } from "@/components/ui/toaster";
 import { useEffect, useState } from "react";
+// import { useNavigate } from "react-router-dom";
 import { getUser, patchUserProfile } from "../services/userService";
 
 import LogoutButton from "../components/authentication/LogoutButton";
@@ -27,11 +28,6 @@ import UserAccountView from "../components/user/UserAccountView";
 import UserAccountForm from "../components/user/UserAccountForm";
 
 const UserAccount = () => {
-  // console.log("typeof UserProfileView:", typeof UserProfileView);
-  // console.log("UserProfileView:", UserProfileView);
-
-  // console.log("typeof UserProfileForm", typeof UserProfileForm);
-  // console.log("UserProfileForm:", UserProfileForm);
   
   const { isLoading: authIsLoading, getAccessTokenSilently } = useAuth0();
   const [dbUser, setDbUser] = useState(null);
@@ -64,10 +60,25 @@ const UserAccount = () => {
       const token = await getAccessTokenSilently();
       const res = await patchUserProfile(token, updateData);
       console.log("User profile updated:", res.data.user);
+
       setDbUser(res.data.user);
+
+      setEditing(false);
+
+      toaster.create({
+        title: "User account updated",
+        description: `Your account details were updated successfully`,
+        type: "success",
+      });
       return res.data.user;
+
     } catch (error) {
       console.error("Error sending patch request:", error);
+      toaster.create({
+        title: "Error",
+        description: `Unable to update your account details.`,
+        type: "error",
+      });
     }
   };
 
@@ -86,7 +97,7 @@ const UserAccount = () => {
         Your Profile
       </Span> */}
         <Text fontSize="xl" fontWeight="bold" mb={4}>
-          My Profile
+          My Account
         </Text>
 
       {editing? (
@@ -107,37 +118,3 @@ const UserAccount = () => {
 };
 
 export default UserAccount;
-
-// const DisplayUserAccount = () => {
-
-//     const [user, setUser] = useState({});
-//     const { getAccessTokenSilently } = useAuth0();
-
-//     useEffect(() => {
-//       const fetchUser = async () => {
-//         try {
-//           const token = await getAccessTokenSilently();
-//           const data = await getUser(token);
-//           console.log("User fetched:", data);
-//           setUser(data);
-//         } catch (error) {
-//           console.error("Error fetching user:", error);
-//         }
-//       };
-
-//       fetchUser();
-//     }, [getAccessTokenSilently]);
-    
-
-//   return (
-//     <Box marginTop={"30px"}>
-//       <Text fontSize="xl" fontWeight="bold" mb={4}>
-//         My Account
-//       </Text>
-//       <p>User Email: {user.email}</p>
-//       <LogoutButton />
-//     </Box>
-//   );
-// };
-
-// export default DisplayUserAccount;

@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { getCampaignById } from "../../services/CampaignService";
-import { Text, Card, List, VStack, Badge, Button } from "@chakra-ui/react";
+import { Text, Card, List, Box, Badge, Button } from "@chakra-ui/react";
 import { toaster } from "@/components/ui/toaster";
 import { BiCopy } from "react-icons/bi";
+import { formatDate } from "../../utils/dateUtils";
 
 const CardDetails = (campaignId) => {
   const [campaign, setCampaign] = useState(null);
@@ -100,8 +101,24 @@ const CardDetails = (campaignId) => {
                             </Button>
                           </List.Item>
                           <List.Item>
-                            Responded: {member.isResponded ? "Yes" : "No"}
+                            Responded: {member.responded ? "Yes" : "No"}
                           </List.Item>
+                          {member.responded && (
+                            <List.Item>
+                              Response: 
+                                {member.responses.map((response) => ( 
+                                  <Box bg="yellow.100" p={2} mt={1} borderRadius="md" border={"1px solid #ccc"}>
+                                  {response.content}
+                                  <br/>
+                                  {" "}
+                                  <Text fontFamily={"mono"} fontSize="sm" color="gray.500">
+                                  Responded at:
+                                  {formatDate(response.createdAt)}
+                                  </Text>
+                                  </Box>
+                                ))}
+                            </List.Item>
+                          )}
                         </List.Root>
                       </List.Item>
                     ))}

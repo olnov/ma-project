@@ -59,7 +59,7 @@ const getCampaignByIdService = async (campaignId) => {
   return campaign;
 }
 
-const getCampaingnByLinkService = async (linkUuid) => {
+const getCampaignByLinkService = async (linkUuid) => {
   if (!linkUuid) {
     throw new Error("Link is not set");
   }
@@ -141,6 +141,6 @@ module.exports = {
   createCampaign,
   getCampaignsByUser,
   getCampaignByIdService,
-  getCampaingnByLinkService,
+  getCampaignByLinkService,
   saveCampaignFeedbackService,
 };

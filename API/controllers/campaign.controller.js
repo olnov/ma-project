@@ -2,7 +2,7 @@ const {
   createCampaign, 
   getCampaignsByUser, 
   getCampaignByIdService, 
-  getCampaingnByLinkService,
+  getCampaignByLinkService,
   saveCampaignFeedbackService,
 } = require("../services/campaign.service");
 
@@ -61,14 +61,14 @@ const getCampaignByIdController = async (req, res) => {
   }
 };
 
-const getCampaingnByLinkController = async (req, res) => {
+const getCampaignByLinkController = async (req, res) => {
   const linkUuid = req.params.linkUuid;
   console.log("Fetching campaign with link:", linkUuid);
   if (!linkUuid) {
     return res.status(400).json({ message: "Link is not set" });
   }
   try {
-    const campaign = await getCampaingnByLinkService(linkUuid);
+    const campaign = await getCampaignByLinkService(linkUuid);
     if (!campaign) {
       return res.status(404).json({ message: "Campaign not found" });
     }
@@ -101,6 +101,6 @@ module.exports = {
   createNewCampaign,
   getCampaignsByUserId,
   getCampaignByIdController,
-  getCampaingnByLinkController,
+  getCampaignByLinkController,
   saveCampaignFeedbackController,
 };

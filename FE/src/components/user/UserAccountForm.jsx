@@ -54,6 +54,14 @@ const UserAccountForm = ({ dbUser, onSave, onCancel }) => {
                                 bg="white"
                                 {...register("firstName", {
                                 required: "First name is required",
+                                pattern: {
+                                    value: /^[a-zA-Z\s'-]+$/,
+                                    message: "Only letters, spaces, hyphens, and apostrophes are allowed"
+                                },
+                                maxLength: {
+                                    value: 50,
+                                    message: "Must be 50 characters or less"
+                                }
                                 })}
                             />
                             <FormErrorMessage>{errors.firstName?.message}</FormErrorMessage>
@@ -68,6 +76,14 @@ const UserAccountForm = ({ dbUser, onSave, onCancel }) => {
                                 bg="white"
                                 {...register("lastName", {
                                 required: "Last name is required",
+                                pattern: {
+                                    value: /^[a-zA-Z\s'-]+$/,
+                                    message: "Only letters, spaces, hyphens, and apostrophes are allowed"
+                                },
+                                maxLength: {
+                                    value: 50,
+                                    message: "Must be 50 characters or less"
+                                }
                                 })}
                             />
                             <FormErrorMessage>{errors.lastName?.message}</FormErrorMessage>
@@ -81,9 +97,18 @@ const UserAccountForm = ({ dbUser, onSave, onCancel }) => {
                                 placeholder="Username"
                                 bg="white"
                                 {...register("username", {
-                                validate: (value) =>
-                                    !/\s/.test(value) || "Username cannot contain spaces",
-                                })}
+                                pattern: {
+                                    value: /^[a-zA-Z0-9_]+$/,
+                                    message: "Only letters, numbers, and underscores allowed"
+                                },
+                                minLength: {
+                                    value: 3,
+                                    message: "Must be at least 3 characters"
+                                },
+                                maxLength: {
+                                    value: 30,
+                                    message: "Must be 30 characters or less"
+                                }})}
                             />
                             <FormErrorMessage>{errors.username?.message}</FormErrorMessage>
                         </FormControl>

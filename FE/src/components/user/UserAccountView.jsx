@@ -3,16 +3,10 @@ import {
     Button,
     Card,
     HStack,
-    Input,
-    Span,
-    Flex,
     Text,
-    Badge,
-    IconButton,
     VStack,
     Field,
 } from "@chakra-ui/react";
-import { FaRegTrashAlt, FaEdit, FaSave } from "react-icons/fa";
 
 const UserAccountView = ({ dbUser, onEdit }) => {
     return (
@@ -69,14 +63,6 @@ const UserAccountView = ({ dbUser, onEdit }) => {
 
                     <Field.Root mt={3}>
                         <Field.Label fontWeight="bold">
-                            {/* <IconButton
-                                size="xs"
-                                variant="outline"
-                                colorPalette="gray"
-                                aria-label="Edit profile"
-                                onClick={onEdit}>
-                                <FaEdit size={14} />
-                            </IconButton> */}
                             Email: <Text as="span" color="red.500" ml={1} opacity={0}>*</Text>
                         </Field.Label>
                         <Box

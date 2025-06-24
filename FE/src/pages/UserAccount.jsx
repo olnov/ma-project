@@ -58,10 +58,10 @@ const UserAccount = () => {
       return res.data.user;
 
     } catch (error) {
-      console.error("Error sending patch request:", error);
+      console.log("Token error:", error);
       toaster.create({
         title: "Error",
-        description: `Unable to update your account details.`,
+        description: "Token missing or expired. Please log in again.",
         type: "error",
       });
     }

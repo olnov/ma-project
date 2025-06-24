@@ -1,6 +1,7 @@
 import { getCampaignsByUser } from "../services/CampaignService";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 import {
   Box,
   Button,
@@ -17,16 +18,23 @@ const DashboardPage = () => {
   const [campaigns, setCampaigns] = useState([]);
   const [fileteredCampaigns, setFilteredCampaigns] = useState([]);
   const navigate = useNavigate();
+  const { getAccessTokenSilently } = useAuth0();
 
   const fetchCampaigns = async () => {
     const stubUserId = "6845d0ff6b26dd84fbe38c72"; // Replace with actual user ID logic
-    const response = await getCampaignsByUser(stubUserId);
-    console.log("Fetched campaigns:", response);
-    if (response.status === 200) {
-      setCampaigns(response.data);
-      setFilteredCampaigns(response.data);
-    } else {
-      console.error("Failed to fetch campaigns:", response.message);
+
+    try {
+      const token = await getAccessTokenSilently();
+      const response = await getCampaignsByUser(token, stubUserId);
+      console.log("Fetched campaigns:", response);
+      if (response.status === 200) {
+        setCampaigns(response.data);
+        setFilteredCampaigns(response.data);
+      } else {
+        console.error("Failed to fetch campaigns:", response.message);
+      }
+    } catch (error) {
+        console.error("Error fetching campaigns:", error);
     }
   };
 

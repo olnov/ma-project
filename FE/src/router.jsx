@@ -59,7 +59,7 @@ const router = createBrowserRouter([
     path: "/create-campaign",
     element: (
       <TopBarLayout>
-        <CreateCampaign />
+        <ProtectedRoute component={CreateCampaign} />
       </TopBarLayout>
     ),
   },

@@ -1,13 +1,13 @@
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 // TODO: Add token authentication
-export const createCampaign = async (campaignData) => {
+export const createCampaign = async (token, campaignData) => {
     console.log('Creating campaign with data:', campaignData);
     const requestOptions = {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            // Authorization: `Bearer ${token}`, 
+            Authorization: `Bearer ${token}`, 
         },
         body: JSON.stringify(campaignData),
     };
@@ -23,12 +23,12 @@ export const createCampaign = async (campaignData) => {
 }
 
 // TODO: Add token authentication
-export const getCampaignsByUser = async (userId) => {
+export const getCampaignsByUser = async (token, userId) => {
     const requestOptions = {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-            // Authorization: `Bearer ${token}`, 
+            Authorization: `Bearer ${token}`, 
         },
     };
     const response = await fetch(`${BACKEND_URL}/api/v1/campaigns/user/${userId}`, requestOptions);
@@ -43,7 +43,7 @@ export const getCampaignsByUser = async (userId) => {
 };
 
 // TODO: Add token authentication
-export const getCampaignById = async (campaignId) => {
+export const getCampaignById = async (token, campaignId) => {
     console.log('Fetching campaign with ID:', campaignId);
     if (!campaignId) {
         return { status: 400, message: 'Campaign ID is not set' };
@@ -52,7 +52,7 @@ export const getCampaignById = async (campaignId) => {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-            // Authorization: `Bearer ${token}`, 
+            Authorization: `Bearer ${token}`, 
         },
     };
     const response = await fetch(`${BACKEND_URL}/api/v1/campaigns/campaign/${campaignId}`, requestOptions);

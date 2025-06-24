@@ -19,6 +19,7 @@ import { FaPlus } from "react-icons/fa6";
 import { createCampaign } from "../services/CampaignService";
 import { toaster } from "@/components/ui/toaster";
 import { useNavigate } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const generateMemberId = () => crypto.randomUUID();
 
@@ -173,6 +174,7 @@ const CreateCampaign = () => {
   const [editingProjectId, setEditingProjectId] = useState(null);
   const [campaignTitle, setCampaignTitle] = useState("");
   const navigate = useNavigate();
+  const { getAccessTokenSilently } = useAuth0();
 
   const handleSave = (updatedProject) => {
     setProjects((prev) => {
@@ -219,18 +221,28 @@ const CreateCampaign = () => {
         })),
       })),
     };
-    const newCampaign = await createCampaign(campaign);
-    if (newCampaign.status === 201) {
+    try {
+      const token = await getAccessTokenSilently();
+      const newCampaign = await createCampaign(token, campaign);
+      if (newCampaign.status === 201) {
+        toaster.create({
+          title: "Campaign created",
+          description: "Your campaign has been created successfully.",
+          type: "success",
+        });
+        navigate('/dashboard');
+      } else {
+        toaster.create({
+          title: "Error creating campaign",
+          description: "There was an error creating your campaign.",
+          type: "error",
+        });
+      }
+    } catch (error) {
+      console.log("Token error:", error);
       toaster.create({
-        title: "Campaign created",
-        description: "Your campaign has been created successfully.",
-        type: "success",
-      });
-      navigate('/dashboard');
-    } else {
-      toaster.create({
-        title: "Error creating campaign",
-        description: "There was an error creating your campaign.",
+        title: "Error",
+        description: "Token missing or expired. Please log in again.",
         type: "error",
       });
     }

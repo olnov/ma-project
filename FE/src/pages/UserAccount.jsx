@@ -1,26 +1,12 @@
 import {
   Box,
-  Button,
-  Card,
-  HStack,
-  Input,
-  Span,
-  Flex,
   Text,
-  Badge,
-  IconButton,
-  VStack,
-  Field,
   Spinner
 } from "@chakra-ui/react";
-import { FcCalendar, FcBusinessman, FcBusinesswoman } from "react-icons/fc";
-import { FaRegTrashAlt, FaEdit, FaSave } from "react-icons/fa";
-import { FaPlus } from "react-icons/fa6";
 
 import { useAuth0 } from "@auth0/auth0-react";
 import { toaster } from "@/components/ui/toaster";
 import { useEffect, useState } from "react";
-// import { useNavigate } from "react-router-dom";
 import { getUser, patchUserProfile } from "../services/userService";
 
 import LogoutButton from "../components/authentication/LogoutButton";
@@ -90,11 +76,8 @@ const UserAccount = () => {
   };
 
   return (
-    // <Box mt={4} width="100%">
     <Box padding="20px">
-      {/* <Span fontSize="2xl" fontWeight="bold">
-        Your Profile
-      </Span> */}
+
         <Text fontSize="xl" fontWeight="bold" mb={4}>
           My Account
         </Text>

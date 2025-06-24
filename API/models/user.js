@@ -3,7 +3,7 @@ const { Schema, Types} = mongoose;
 
 const UserSchema = new Schema(
     {
-        auth0Id: { //Auth0 sub
+        auth0Id: { //Auth0 sub from Access token
             type: String,
             required: [true, "Auth0 sub is required"],
             unique: true 

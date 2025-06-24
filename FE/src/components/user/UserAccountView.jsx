@@ -89,7 +89,6 @@ const UserAccountView = ({ dbUser, onEdit }) => {
                 </VStack>
             </Card.Body>
         </Card.Root>
-
     );
 };
 

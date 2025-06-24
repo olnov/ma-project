@@ -4,7 +4,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect, useRef } from "react";
 
 // This syncs the user profile information from the Auth0 ID token with MongoDB users
-//If user doesn't exist (i.e. on user's first sign-up/login) in the mongoDB, a new user is created with the profle information
+//If user doesn't exist (i.e. on user's first sign-up/login) in the mongoDB, a new user is created with the profle information from Auth0
 const AuthSync = () => {
     const { user, isLoading, isAuthenticated, getAccessTokenSilently } = useAuth0();
     // const hasSynced = sessionStorage.getItem("hasSynced");

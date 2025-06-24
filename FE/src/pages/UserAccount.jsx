@@ -94,7 +94,6 @@ const UserAccount = () => {
           onEdit={() => setEditing(true)}
         />
       )}
-      <LogoutButton />
     </Box>
   );
 };

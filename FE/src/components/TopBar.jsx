@@ -7,6 +7,7 @@ import {
   Text,
   HStack,
 } from "@chakra-ui/react";
+import LogoutButton from "./authentication/LogoutButton";
 
 const TopBar = () => {
   return (
@@ -33,6 +34,19 @@ const TopBar = () => {
         <Link href="/create-campaign">
           Create Campaign
         </Link>
+        <Link href="/profile">
+          Profile
+        </Link>
+        <Link href="/me">
+          Account
+        </Link>
+        <LogoutButton
+          size={"md"}
+          colorPalette={"gray"} 
+          variant={"surface"}
+          fontWeight={"600"}
+          alignContent={"flex-end"}
+        />
       </HStack>
       <Spacer />
       <Avatar.Root size="sm" name="John Doe">

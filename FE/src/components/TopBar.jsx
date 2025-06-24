@@ -27,7 +27,7 @@ const TopBar = () => {
       rounded={"md"}
     >
       <Heading size="md">Makers Agency</Heading>
-      <HStack spacing={4} ml={6}>
+      <HStack spacing={4} ml={6} flex={1} justifyContent="space-between">
         <Link href="/dashboard">
           My Campaigns
         </Link>
@@ -40,29 +40,30 @@ const TopBar = () => {
         <Link href="/me">
           Account
         </Link>
-        <LogoutButton
-          size={"md"}
-          colorPalette={"gray"} 
-          variant={"surface"}
-          fontWeight={"600"}
-          alignContent={"flex-end"}
-        />
       </HStack>
       <Spacer />
-      <Avatar.Root size="sm" name="John Doe">
-        <Avatar.Fallback name="John Doe" />
-        <Avatar.Image
-          src="https://bit.ly/dan-abramov"
-          alt="John Doe"
-          borderRadius="full"
-          // boxSize="40px"
+      <HStack spacing={4} ml={6}>
+        <Avatar.Root size="sm" name="John Doe">
+          <Avatar.Fallback name="John Doe" />
+          <Avatar.Image
+            src="https://bit.ly/dan-abramov"
+            alt="John Doe"
+            borderRadius="full"
+            // boxSize="40px"
+          />
+        </Avatar.Root>
+        <Link href="/profile">
+          <Text ml={2} fontSize="sm" color="gray.600">
+            John Doe
+          </Text>
+        </Link>
+        <LogoutButton
+          size={"md"}
+          colorPalette={"gray"}
+          variant={"outline"}
+          fontWeight={"600"}
         />
-      </Avatar.Root>
-      <Link href="/profile">
-      <Text ml={2} fontSize="sm" color="gray.600">
-        John Doe
-      </Text>
-      </Link>
+      </HStack>
     </Flex>
   );
 };

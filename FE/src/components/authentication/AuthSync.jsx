@@ -5,34 +5,34 @@ import { useEffect } from "react";
 
 // This syncs the user profile information from the Auth0 ID token with MongoDB users
 //If user doesn't exist (i.e. on user's first sign-up/login) in the mongoDB, a new user is created with the profle information from Auth0
+// Will run on each login
 const AuthSync = () => {
     const { user, isLoading, isAuthenticated, getAccessTokenSilently } = useAuth0();
-    // const hasSynced = sessionStorage.getItem("hasSynced");
-        // Attempt to make sync happen only once per session
-    // const hasSyncedRef = useRef(false); 
-        // Attempt to make sync happen only once after login
 
     useEffect(() => {
         if (isLoading || !isAuthenticated) return;
-        // if (isLoading || !isAuthenticated || hasSynced === "true") return; 
-            //Attempt to make sync happen only once per session
-        // if (isLoading || !isAuthenticated || hasSyncedRef.current) return;
-            // Attempt to make sync happen only once after login
 
+        const hasSynced = sessionStorage.getItem("hasSynced");
+        
         const runSync = async () => {
             try {
                 const token = await getAccessTokenSilently();
-                console.log("USER = ", user);
                 await syncUser(token, user);
-                console.log("user synced once this session");
-                // hasSynced.setItem("hasSynced", "true"); //Attempt to make sync happen only once per session
-                // hasSyncedRef.current = true; //Attempt to make sync happen only once after login
+                sessionStorage.setItem("hasSynced", true)
+                //sessionStorage is now cleared on logout in LogoutButton component
+                console.log("user synced once this session", hasSynced);
+                
             } catch (error) {
                 console.error("user sync failed: ", error);
             }
         };
 
-        runSync();
+        // Prevents full component from running each page render - only checks sessionStorage on renders after login
+        if (!hasSynced) {
+            runSync();
+        } else {
+            console.log("User already synced");
+        }
 
     }, [user, isLoading, isAuthenticated, getAccessTokenSilently]);
     

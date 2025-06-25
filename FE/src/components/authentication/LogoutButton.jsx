@@ -14,7 +14,13 @@ const LogoutButton = ({ colorPalette, size, variant, fontWeight, alignContent })
       variant={variant}
       fontWeight={fontWeight}
       alignContent={alignContent}
-      onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}
+      // onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}
+      onClick={
+        () => {
+          logout({ logoutParams: { returnTo: window.location.origin } });
+          sessionStorage.clear();
+        }
+      }
     >
       Log Out
     </Button>

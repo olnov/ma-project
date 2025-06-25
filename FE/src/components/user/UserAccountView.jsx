@@ -21,7 +21,7 @@ const UserAccountView = ({ dbUser, onEdit }) => {
                 <VStack spacing={4} align="stretch">
                     <Field.Root mt={3}>
                         <Field.Label fontWeight="bold">
-                            First name: <Text as="span" color="red.500" ml={1} opacity={0}>*</Text>
+                            First name <Text as="span" color="red.500" ml={1} opacity={0}>*</Text>
                         </Field.Label>
                         <Box
                             borderRadius="md"
@@ -35,7 +35,7 @@ const UserAccountView = ({ dbUser, onEdit }) => {
 
                     <Field.Root mt={3}>
                         <Field.Label fontWeight="bold">
-                            Last name: <Text as="span" color="red.500" ml={1} opacity={0}>*</Text>
+                            Last name <Text as="span" color="red.500" ml={1} opacity={0}>*</Text>
                         </Field.Label>
                         <Box
                             borderRadius="md"
@@ -49,7 +49,7 @@ const UserAccountView = ({ dbUser, onEdit }) => {
 
                     <Field.Root mt={3}>
                         <Field.Label fontWeight="bold">
-                            Username:
+                            Username
                         </Field.Label>
                         <Box
                             borderRadius="md"
@@ -63,7 +63,7 @@ const UserAccountView = ({ dbUser, onEdit }) => {
 
                     <Field.Root mt={3}>
                         <Field.Label fontWeight="bold">
-                            Email: <Text as="span" color="red.500" ml={1} opacity={0}>*</Text>
+                            Email <Text as="span" color="red.500" ml={1} opacity={0}>*</Text>
                         </Field.Label>
                         <Box
                             borderRadius="md"
@@ -79,7 +79,7 @@ const UserAccountView = ({ dbUser, onEdit }) => {
                         <Button
                             // size="sm"
                             // variant="surface"
-                            colorScheme="blue"
+                            colorPalette="blue"
                             // leftIcon={<FaEdit />}
                             onClick={onEdit}
                             >

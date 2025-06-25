@@ -5,13 +5,8 @@ import {
     HStack,
     VStack,
     Input,
+    Field,
 } from "@chakra-ui/react";
-import { 
-    FormControl,
-    FormLabel,
-    FormErrorMessage,
-    FormHelperText,
-} from "@chakra-ui/form-control";
 import { useForm } from "react-hook-form";
 
 const UserAccountForm = ({ dbUser, onSave, onCancel }) => {
@@ -46,8 +41,10 @@ const UserAccountForm = ({ dbUser, onSave, onCancel }) => {
                     <VStack spacing={4} align="stretch">
                         
                         {/* First Name */}
-                        <FormControl isInvalid={!!errors.firstName} isRequired mt={3}>
-                            <FormLabel fontWeight="bold">First name</FormLabel>
+                        <Field.Root invalid={!!errors.firstName} required mt={3}>
+                            <Field.Label fontWeight="bold">
+                                First name <Field.RequiredIndicator />
+                            </Field.Label>
                             <Input
                                 type="text"
                                 placeholder="First name"
@@ -64,12 +61,14 @@ const UserAccountForm = ({ dbUser, onSave, onCancel }) => {
                                 }
                                 })}
                             />
-                            <FormErrorMessage>{errors.firstName?.message}</FormErrorMessage>
-                        </FormControl>
+                            <Field.ErrorText>{errors.firstName?.message}</Field.ErrorText>
+                        </Field.Root>
 
                         {/* Last Name */}
-                        <FormControl isInvalid={!!errors.lastName} isRequired mt={3}>
-                            <FormLabel fontWeight="bold">Last name</FormLabel>
+                        <Field.Root invalid={!!errors.lastName} required mt={3}>
+                            <Field.Label fontWeight="bold">
+                                Last name <Field.RequiredIndicator />
+                            </Field.Label>
                             <Input
                                 type="text"
                                 placeholder="Last name"
@@ -86,12 +85,14 @@ const UserAccountForm = ({ dbUser, onSave, onCancel }) => {
                                 }
                                 })}
                             />
-                            <FormErrorMessage>{errors.lastName?.message}</FormErrorMessage>
-                        </FormControl>
+                            <Field.ErrorText>{errors.lastName?.message}</Field.ErrorText>
+                        </Field.Root>
 
                         {/* Username */}
-                        <FormControl isInvalid={!!errors.username} mt={3}>
-                            <FormLabel fontWeight="bold">Username</FormLabel>
+                        <Field.Root invalid={!!errors.username} mt={3}>
+                            <Field.Label fontWeight="bold">
+                                Username
+                            </Field.Label>
                             <Input
                                 type="text"
                                 placeholder="Username"
@@ -110,12 +111,14 @@ const UserAccountForm = ({ dbUser, onSave, onCancel }) => {
                                     message: "Must be 30 characters or less"
                                 }})}
                             />
-                            <FormErrorMessage>{errors.username?.message}</FormErrorMessage>
-                        </FormControl>
+                            <Field.ErrorText>{errors.username?.message}</Field.ErrorText>
+                        </Field.Root>
 
                         {/* Email */}
-                        <FormControl isInvalid={!!errors.email} isRequired mt={3}>
-                            <FormLabel fontWeight="bold">Email</FormLabel>
+                        <Field.Root invalid={!!errors.email} required mt={3}>
+                            <Field.Label fontWeight="bold">
+                                Email <Field.RequiredIndicator />
+                            </Field.Label>
                             <Input
                                 type="email"
                                 placeholder="Email"
@@ -128,8 +131,8 @@ const UserAccountForm = ({ dbUser, onSave, onCancel }) => {
                                 },
                                 })}
                             />
-                            <FormErrorMessage>{errors.email?.message}</FormErrorMessage>
-                        </FormControl>
+                            <Field.ErrorText>{errors.email?.message}</Field.ErrorText>
+                        </Field.Root>
 
                         {/* Buttons */}
                         <HStack justify="flex-end">
@@ -141,7 +144,7 @@ const UserAccountForm = ({ dbUser, onSave, onCancel }) => {
                                 Cancel
                             </Button>
                             <Button
-                                colorScheme="blue"
+                                colorPalette="blue"
                                 type="submit"
                                 isLoading={isSubmitting}
                             >

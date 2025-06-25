@@ -13,7 +13,7 @@ const DetailsPage = () => {
         Campaign Details
       </Text>
       <CardDetails campaignId={campaignId} />
-      <Button colorPallete="blue.500" mt={4} onClick={() => navigate("/dashboard")}>
+      <Button colorPalette="blue.500" mt={4} onClick={() => navigate("/dashboard")}>
         Back to Dashboard
       </Button>
     </Box>

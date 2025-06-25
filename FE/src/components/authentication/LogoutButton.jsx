@@ -1,15 +1,21 @@
 import { useAuth0 } from '@auth0/auth0-react';
-import { Button } from "@chakra-ui/react";
+import { Button, ButtonGroup } from "@chakra-ui/react";
 
-const LogoutButton = () => {
+const LogoutButton = ({ colorPalette, size, variant, fontWeight, alignContent }) => {
   const { logout, isAuthenticated } = useAuth0()
 
   if (!isAuthenticated) return null
 
   return (
     <Button 
-    colorScheme="blue" size="md" 
-    onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>
+    // colorPalette="blue" size="md" 
+      colorPalette={colorPalette}
+      size={size}
+      variant={variant}
+      fontWeight={fontWeight}
+      alignContent={alignContent}
+      onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}
+    >
       Log Out
     </Button>
   )

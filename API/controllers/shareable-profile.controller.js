@@ -18,13 +18,13 @@ const getShareableContentByUserId = async (req, res) => {
                   fullName: member.fullName,
                   role: member.role,
                   responded: member.responded,
-                  responseContents: member.responseContents,
+                  responses: [member.responses],
                 }));
 
               return respondedTeam.length > 0
                 ? {
                     projectId: project.project._id,
-                    projectName: project.project.name,
+                    projectName: project.project.title,
                     team: respondedTeam,
                   }
                 : null;

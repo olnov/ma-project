@@ -11,6 +11,7 @@ export const useShareableProfile = (userId) => {
       try {
         const response = await getShareableProfile(userId);
         if (response.status === 200) {
+          console.log("Fetched profile data:", response.data);
           setProfileData(response.data);
         } else {
           setError(response.message);

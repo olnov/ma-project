@@ -40,11 +40,11 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/shareable-profile/",
+    path: "/shareable-profile/:userId",
     element: (
-      <TopBarLayout>
+      <NoTopBarLayout>
         <ShareableProfilePage />
-      </TopBarLayout>
+      </NoTopBarLayout>
     ),
   },
   {

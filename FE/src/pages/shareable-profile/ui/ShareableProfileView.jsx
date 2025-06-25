@@ -44,6 +44,11 @@ export const ShareableProfileView = ({ profileData }) => {
 
   return (
     <>
+    <HStack justify="center" mb={4}>
+      <Text fontSize="2xl" fontWeight="bold" color="gray.600">
+        What people think about John Doe
+      </Text>
+      </HStack>
       <Flex as="header" direction="row" gap={8} width="100%" align="flex-start">
         <Box w={{ base: "100%", md: "280px" }} flexShrink={0}>
           <VStack align="start">
@@ -88,9 +93,9 @@ export const ShareableProfileView = ({ profileData }) => {
                       {response.content}
                     </Text>
                   </Box>
-                  <Text fontSize="xs" color="gray.500">
-                    {response.campaignName} {" * "} {response.projectName}{" "}
-                    {" * "} Submitted on:{" "}
+                  <Text fontSize="sm" color="gray.500">
+                    {response.campaignName} &bull; {response.projectName} &bull;
+                    Submitted on:{" "}
                     {new Date(response.createdAt).toLocaleString()}
                   </Text>
                 </VStack>

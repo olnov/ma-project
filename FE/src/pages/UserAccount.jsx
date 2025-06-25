@@ -9,7 +9,6 @@ import { toaster } from "@/components/ui/toaster";
 import { useEffect, useState } from "react";
 import { getUser, patchUserProfile } from "../services/userService";
 
-import LogoutButton from "../components/authentication/LogoutButton";
 import UserAccountView from "../components/user/UserAccountView";
 import UserAccountForm from "../components/user/UserAccountForm";
 
@@ -26,19 +25,34 @@ const UserAccount = () => {
       return;
     }
 
-    getAccessTokenSilently()
-    .then((token) => {
-      return getUser(token);
-    })
-    .then((res) => {
-      setDbUser(res.data.user);
-      setLoading(false);
-      console.log("User fetched:", res.data);
-    })
-    .catch((error) => {
-      console.log("Error fetching user: ", error);
-      setLoading(false);
-    })
+    const fetchUser = async () => {
+      try {
+        const token = await getAccessTokenSilently();
+        const res = await getUser(token);
+        setDbUser(res.data.user);
+        setLoading(false);
+        console.log("User fetched:", res.data);
+      } catch (error) {
+        console.error("Error fetching user: ", error);
+        setLoading(false);
+      }
+    }
+
+    fetchUser();
+
+    // getAccessTokenSilently()
+    // .then((token) => {
+    //   return getUser(token);
+    // })
+    // .then((res) => {
+    //   setDbUser(res.data.user);
+    //   setLoading(false);
+    //   console.log("User fetched:", res.data);
+    // })
+    // .catch((error) => {
+    //   console.log("Error fetching user: ", error);
+    //   setLoading(false);
+    // })
   }, [authIsLoading, getAccessTokenSilently]);
 
   const handleUpdate = async (updateData) => {

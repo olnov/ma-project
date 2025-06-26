@@ -10,7 +10,6 @@ import NoTopBarLayout from "./layouts/NoTopBarLayout.jsx";
 
 // Pages
 import RequestFeedback from "./pages/RequestFeedback.jsx";
-import Demo from "./pages/demo.jsx";
 import NotFound from "./pages/NotFound.jsx";
 import CreateCampaign from "./pages/CreateCampaign.jsx";
 import DashboardPage from "./pages/DashboardPage.jsx";
@@ -18,6 +17,7 @@ import HomePage from "./pages/HomePage.jsx";
 import DetailsPage from "./pages/DetailsPage.jsx";
 import UserAccount from "./pages/UserAccount.jsx";
 import FeedbackFormPage from "./pages/FeedBackFormPage.jsx";
+import ShareableProfilePage from "./pages/shareable-profile/ShareableProfilePage.jsx";
 
 // Dev pages
 import SyncUserTestPage from "./pages/dev/SyncUser.jsx";
@@ -40,11 +40,11 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/demo",
+    path: "/shareable-profile/:userId",
     element: (
-      <TopBarLayout>
-        <Demo />
-      </TopBarLayout>
+      <NoTopBarLayout>
+        <ShareableProfilePage />
+      </NoTopBarLayout>
     ),
   },
   {

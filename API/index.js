@@ -19,6 +19,7 @@ const feedbacksRouter = require('./routes/feedback');
 const usersRouter = require('./routes/users.js');
 const registerStubRouter = require('./routes/userStub'); // FOR DEVELOPMENT ONLY
 const campaignRouter = require('./routes/campaign'); 
+const shareableProfileRouter = require('./routes/shareable-profile');
 
 // Connect to MongoDB
 connectDB();
@@ -39,6 +40,7 @@ app.use('/api/v1/', privateRouter);
 app.use('/api/v1/users', usersRouter);
 app.use('/api/v1/userStub', registerStubRouter); // FOR DEVELOPMENT ONLY
 app.use('/api/v1/campaigns', campaignRouter); 
+app.use('/api/v1/shareable-profiles', shareableProfileRouter);
 
 
 // 404 handler

@@ -12,7 +12,7 @@ import {
   VStack,
   Field,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FcCalendar, FcBusinessman, FcBusinesswoman } from "react-icons/fc";
 import { FaRegTrashAlt, FaEdit, FaSave } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa6";
@@ -20,8 +20,10 @@ import { createCampaign } from "../services/CampaignService";
 import { toaster } from "@/components/ui/toaster";
 import { useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
+import { useUser } from "../contexts/UserContext";
 
-const generateMemberId = () => crypto.randomUUID();
+const FEEDBACK_BASE_URL = import.meta.env.VITE_FEEDBACK_BASE_URL || "http://localhost:5173";
+const generateMemberId = () => crypto.randomUUID(); // This makes member links unique
 
 const MemberInput = ({ member, index, onChange, onRemove }) => (
   <HStack spacing={2}>
@@ -83,7 +85,7 @@ const ProjectEditor = ({ initialValues, onSave, onCancel }) => {
         role: "",
         isResponded: false,
         responseContents: "",
-        link: `http://localhost:5173/feedback/${generateMemberId()}`,
+        link: `${FEEDBACK_BASE_URL}/feedback/${generateMemberId()}`,
       },
     ]);
   };
@@ -175,6 +177,14 @@ const CreateCampaign = () => {
   const [campaignTitle, setCampaignTitle] = useState("");
   const navigate = useNavigate();
   const { getAccessTokenSilently } = useAuth0();
+  const { user } = useUser();
+
+  useEffect(() => {
+    if (!user) {
+      console.error("User is not available yet. Waiting.");
+      return; // Wait for user to be available
+    }
+  }, [user]);
 
   const handleSave = (updatedProject) => {
     setProjects((prev) => {
@@ -204,7 +214,7 @@ const CreateCampaign = () => {
     const campaign = {
       //   _id: crypto.randomUUID(),
       title: campaignTitle,
-      createdBy: "950aad9b-c452-417f-be62-8d4d1a3b707e",
+      createdBy: user._id,
       createdAt: new Date().toISOString(),
       projects: projects.map((p) => ({
         // _id: p._id, TODO: handle _id searching
@@ -239,14 +249,13 @@ const CreateCampaign = () => {
         });
       }
     } catch (error) {
-      console.log("Token error:", error);
+      console.error("Token error:", error);
       toaster.create({
         title: "Error",
         description: "Token missing or expired. Please log in again.",
         type: "error",
       });
     }
-    console.log("Campaign to save:", campaign);
   };
 
   return (

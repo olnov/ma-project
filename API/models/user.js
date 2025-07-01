@@ -14,8 +14,8 @@ const UserSchema = new Schema(
             default: "",
             sparse: true, // allows multiple users with blank username
             validate: {
-            validator: (v) => v === "" || /^[a-zA-Z0-9_]+$/.test(v),
-            message: "Username can only contain letters, numbers, or underscores.",
+            validator: (v) => v === "" || /^[a-zA-Z0-9_.]+$/.test(v),
+            message: "Username can only contain letters, numbers, underscores, or dots.",
             },
         },
         firstName: {

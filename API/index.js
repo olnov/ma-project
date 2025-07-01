@@ -31,16 +31,34 @@ app.use(express.urlencoded({ extended: false }));
 app.use('/api/v1/docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 // Routes
-app.use('/api/v1/feedbacks', feedbacksRouter);
-app.use('/api/v1/auth', authRouter); // FOR DEVELOPMENT ONLY
-app.use('/api/v1/', healthRouter);
+app.use('/api/v1/feedbacks', feedbacksRouter
+  //  #swagger.tags=['feedbacks(dev)']
+);
+app.use('/api/v1/auth', authRouter
+  //  #swagger.tags=['auth(dev)']
+); // FOR DEVELOPMENT ONLY
+app.use('/api/v1/', healthRouter
+  //  #swagger.tags=['health(dev)']
+);
 app.use('/api/v1/docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
-app.use('/api/v1/', publicRouter);
-app.use('/api/v1/', privateRouter);
-app.use('/api/v1/users', usersRouter);
-app.use('/api/v1/userStub', registerStubRouter); // FOR DEVELOPMENT ONLY
-app.use('/api/v1/campaigns', campaignRouter); 
-app.use('/api/v1/shareable-profiles', shareableProfileRouter);
+app.use('/api/v1/', publicRouter
+  //  #swagger.tags=['public(dev)']
+);
+app.use('/api/v1/', privateRouter
+  //  #swagger.tags=['private(dev)']
+);
+app.use('/api/v1/users', usersRouter
+  //  #swagger.tags=['users']
+);
+app.use('/api/v1/userStub', registerStubRouter
+  //  #swagger.tags=['register-stub(dev)']
+); // FOR DEVELOPMENT ONLY
+app.use('/api/v1/campaigns', campaignRouter
+  //  #swagger.tags=['campaigns']
+); 
+app.use('/api/v1/shareable-profiles', shareableProfileRouter
+  //  #swagger.tags=['shareable-profiles']
+);
 
 
 // 404 handler

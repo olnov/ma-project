@@ -1,6 +1,7 @@
 import { getCampaignsByUser } from "../services/CampaignService";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useUser } from "../contexts/UserContext";
 import { useAuth0 } from "@auth0/auth0-react";
 import {
   Box,
@@ -19,14 +20,18 @@ const DashboardPage = () => {
   const [fileteredCampaigns, setFilteredCampaigns] = useState([]);
   const navigate = useNavigate();
   const { getAccessTokenSilently } = useAuth0();
+  const { user } = useUser(); 
 
   const fetchCampaigns = async () => {
-    const stubUserId = "6845d0ff6b26dd84fbe38c72"; // Replace with actual user ID logic
+    
+    if(!user) {
+      console.error("User is not available yet. Waiting.");
+      return; // Wait for user to be available
+    }
 
     try {
       const token = await getAccessTokenSilently();
-      const response = await getCampaignsByUser(token, stubUserId);
-      console.log("Fetched campaigns:", response);
+      const response = await getCampaignsByUser(token, user._id); // Use user._id from context. TODO: keep token only
       if (response.status === 200) {
         setCampaigns(response.data);
         setFilteredCampaigns(response.data);
@@ -57,8 +62,12 @@ const DashboardPage = () => {
   };
 
   useEffect(() => {
+    if (!user) {
+      console.error("User is not available yet. Waiting.");
+      return; // Wait for user to be available
+    }
     fetchCampaigns();
-  }, []);
+  }, [user]);
 
   return (
     <Box padding="20px">

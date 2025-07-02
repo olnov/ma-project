@@ -12,6 +12,10 @@ const getUser = async (req, res) => {
     let user;
     try {
       user = await getUserByauth0Sub(auth0Sub);
+      // {
+      //   "sub":"sdfsdf",
+      //   "email":"
+      // }
 
       if (!user) {
         return res.status(404).json({ message: "Can't seem to find that user..."});
@@ -28,6 +32,7 @@ const getUser = async (req, res) => {
 const syncUser = async (req, res) => {
   const auth0Sub = req.auth.payload.sub;
   //Always get sub from Access token (decoded with checkJwt), not from ID token
+  console.log("syncUser called with auth0Sub:", auth0Sub);
 
   if (!auth0Sub) {
     return res.status(400).json({ error: "Auth0 sub missing from token payload." });
@@ -39,7 +44,6 @@ const syncUser = async (req, res) => {
 
     if (!user) {
       user = await createUser(auth0Sub, req.body.user); //user info extracted from decoded ID token
-      console.log("New user created:", user);
       res.status(200).json({ message: "User added to database", user: user });
 
     } else {

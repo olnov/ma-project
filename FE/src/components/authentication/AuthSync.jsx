@@ -8,6 +8,7 @@ import { useEffect } from "react";
 // Will run on each login
 const AuthSync = () => {
     const { user, isLoading, isAuthenticated, getAccessTokenSilently } = useAuth0();
+    console.log("user from AuthSync:", user);
 
     useEffect(() => {
         if (isLoading || !isAuthenticated) return;

@@ -9,7 +9,6 @@ import TopBarLayout from "./layouts/TopBarLayout.jsx";
 import NoTopBarLayout from "./layouts/NoTopBarLayout.jsx";
 
 // Pages
-import RequestFeedback from "./pages/RequestFeedback.jsx";
 import NotFound from "./pages/NotFound.jsx";
 import CreateCampaign from "./pages/CreateCampaign.jsx";
 import DashboardPage from "./pages/DashboardPage.jsx";
@@ -48,14 +47,6 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/request-feedback",
-    element: (
-      <TopBarLayout>
-        <ProtectedRoute component={RequestFeedback} />
-      </TopBarLayout>
-    ),
-  },
-  {
     path: "/create-campaign",
     element: (
       <TopBarLayout>
@@ -67,7 +58,7 @@ const router = createBrowserRouter([
     path: "/dashboard",
     element: (
       <TopBarLayout>
-        <DashboardPage />
+        <ProtectedRoute component={DashboardPage} />
       </TopBarLayout>
     ),
   },

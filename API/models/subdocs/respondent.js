@@ -4,7 +4,7 @@ const ResponseSchema = require('./response');
 
 const RespondentSchema = new Schema({
     fullName: { type: String, required: true },
-    email: { type: String, required: true, unique: true },
+    email: { type: String, required: true },
     role: { type: String, required: false },
     link: { type: String, required: true, unique: true },
     responded: { type: Boolean, default: false },

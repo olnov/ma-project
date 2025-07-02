@@ -7,8 +7,10 @@ const createCampaign = async (title, description, createdBy, projects) => {
     throw new Error("Title, createdBy, and projects are required");
   }
 
-  const stubUser = await User.findOne({ email: "o.novikov@ymail.com" });
-  if (!stubUser) throw new Error("User not found");
+  const creatorId = await User.findById(createdBy);
+  if (!creatorId) {
+    throw new Error("User's id provided not found in the database");
+  }
 
   const resolved = await findOrCreateProjects(projects);
 
@@ -31,7 +33,7 @@ const createCampaign = async (title, description, createdBy, projects) => {
   const campaign = new Campaign({
     title,
     description,
-    createdBy: stubUser._id,
+    createdBy: creatorId,
     projects: campaignProjects,
   });
 

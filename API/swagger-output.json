@@ -13,6 +13,9 @@
   "paths": {
     "/api/v1/feedbacks/": {
       "post": {
+        "tags": [
+          "feedbacks(dev)"
+        ],
         "description": "",
         "responses": {
           "200": {
@@ -26,6 +29,9 @@
     },
     "/api/v1/auth/login": {
       "post": {
+        "tags": [
+          "auth(dev)"
+        ],
         "description": "",
         "responses": {
           "200": {
@@ -56,6 +62,9 @@
     },
     "/api/v1/health": {
       "get": {
+        "tags": [
+          "health(dev)"
+        ],
         "description": "",
         "responses": {
           "200": {
@@ -66,6 +75,9 @@
     },
     "/api/v1/public": {
       "get": {
+        "tags": [
+          "public(dev)"
+        ],
         "description": "",
         "responses": {
           "200": {
@@ -76,6 +88,9 @@
     },
     "/api/v1/private": {
       "get": {
+        "tags": [
+          "private(dev)"
+        ],
         "description": "",
         "responses": {
           "200": {
@@ -86,6 +101,9 @@
     },
     "/api/v1/users/sync": {
       "post": {
+        "tags": [
+          "users"
+        ],
         "description": "",
         "responses": {
           "200": {
@@ -116,6 +134,9 @@
     },
     "/api/v1/users/me": {
       "get": {
+        "tags": [
+          "users"
+        ],
         "description": "",
         "responses": {
           "200": {
@@ -132,6 +153,9 @@
     },
     "/api/v1/users/me/update-profile": {
       "patch": {
+        "tags": [
+          "users"
+        ],
         "description": "",
         "responses": {
           "200": {
@@ -162,6 +186,9 @@
     },
     "/api/v1/userStub/register": {
       "post": {
+        "tags": [
+          "register-stub(dev)"
+        ],
         "description": "",
         "responses": {
           "201": {
@@ -201,7 +228,35 @@
     },
     "/api/v1/campaigns/": {
       "post": {
+        "tags": [
+          "campaigns"
+        ],
         "description": "",
+        "parameters": [
+          {
+            "name": "createCampaign",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "example": "any"
+                },
+                "description": {
+                  "example": "any"
+                },
+                "createdBy": {
+                  "example": "any"
+                },
+                "projects": {
+                  "example": "any"
+                }
+              }
+            },
+            "description": "Create a new campaign",
+            "required": true
+          }
+        ],
         "responses": {
           "201": {
             "description": "Created"
@@ -240,6 +295,9 @@
     },
     "/api/v1/campaigns/save-feedback": {
       "patch": {
+        "tags": [
+          "campaigns"
+        ],
         "description": "",
         "responses": {
           "200": {
@@ -279,6 +337,9 @@
     },
     "/api/v1/campaigns/user/{userId}": {
       "get": {
+        "tags": [
+          "campaigns"
+        ],
         "description": "",
         "parameters": [
           {
@@ -287,7 +348,8 @@
             "required": true,
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "Retrieve all campaigns created by a user"
           }
         ],
         "responses": {
@@ -305,6 +367,9 @@
     },
     "/api/v1/campaigns/campaign/{campaignId}": {
       "get": {
+        "tags": [
+          "campaigns"
+        ],
         "description": "",
         "parameters": [
           {
@@ -313,7 +378,8 @@
             "required": true,
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "Retrieve a campaign object by its ID"
           }
         ],
         "responses": {
@@ -334,6 +400,9 @@
     },
     "/api/v1/campaigns/link/{linkUuid}": {
       "get": {
+        "tags": [
+          "campaigns"
+        ],
         "description": "",
         "parameters": [
           {
@@ -342,7 +411,8 @@
             "required": true,
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "Retrieve a parent campaign object by one of the child link UUIDs"
           }
         ],
         "responses": {
@@ -363,6 +433,9 @@
     },
     "/api/v1/shareable-profiles/{userId}": {
       "get": {
+        "tags": [
+          "shareable-profiles"
+        ],
         "description": "",
         "parameters": [
           {

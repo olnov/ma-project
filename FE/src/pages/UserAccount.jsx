@@ -1,7 +1,7 @@
 import {
   Box,
   Text,
-  Spinner
+  Spinner,
 } from "@chakra-ui/react";
 
 import { useAuth0 } from "@auth0/auth0-react";

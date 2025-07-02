@@ -2,69 +2,116 @@ import {
   Flex,
   Heading,
   Spacer,
-  Link,
   Avatar,
   Text,
   HStack,
+  Menu,
+  Portal,
 } from "@chakra-ui/react";
-import LogoutButton from "./authentication/LogoutButton";
+import { Link as ChakraLink } from "@chakra-ui/react";
+import { Link as RouterLink } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
+import { useUser } from "../contexts/UserContext";
 
 const TopBar = () => {
+  const { logout } = useAuth0();
+  const { user } = useUser(); // Using UserContext to get user state
+
   return (
-    <Flex
-      as="header"
-      position="fixed"
-      top="0"
-      left="0"
-      right="0"
-      height="60px"
-      zIndex="1000"
-      bg="yellow.100"
-      color="gray.800"
-      align="center"
-      px={6}
-      shadow="md"
-      rounded={"md"}
-    >
-      <Heading size="md">Makers Agency</Heading>
-      <HStack spacing={4} ml={6} flex={1} justifyContent="space-between">
-        <Link href="/dashboard">
-          My Campaigns
-        </Link>
-        <Link href="/create-campaign">
-          Create Campaign
-        </Link>
-        <Link href="/profile">
-          Profile
-        </Link>
-        <Link href="/me">
-          Account
-        </Link>
-      </HStack>
-      <Spacer />
-      <HStack spacing={4} ml={6}>
-        <Avatar.Root size="sm" name="John Doe">
-          <Avatar.Fallback name="John Doe" />
-          <Avatar.Image
-            src="https://bit.ly/dan-abramov"
-            alt="John Doe"
-            borderRadius="full"
-            // boxSize="40px"
-          />
-        </Avatar.Root>
-        <Link href="/profile">
-          <Text ml={2} fontSize="sm" color="gray.600">
-            John Doe
-          </Text>
-        </Link>
-        <LogoutButton
-          size={"md"}
-          colorPalette={"gray"}
-          variant={"outline"}
-          fontWeight={"600"}
-        />
-      </HStack>
-    </Flex>
+    <>
+      <Flex
+        as="header"
+        position="fixed"
+        top="0"
+        left="0"
+        right="0"
+        height="60px"
+        zIndex="1000"
+        bg="yellow.100"
+        color="gray.800"
+        align="center"
+        px={6}
+        shadow="md"
+        rounded={"md"}
+      >
+        <Heading size="md">Makers Agency</Heading>
+        <HStack spacing={4} ml={6} flex={1}>
+          <ChakraLink as={RouterLink} to="/dashboard">
+            My Campaigns
+          </ChakraLink>
+          <ChakraLink as={RouterLink} to="/create-campaign">
+            Create Campaign
+          </ChakraLink>
+        </HStack>
+        <Spacer />
+        <HStack spacing={4} ml={6}>
+          <Avatar.Root size="sm">
+            <Avatar.Fallback
+              name={user ? user.firstName + " " + user.lastName : "Loading..."}
+            />
+            <Avatar.Image
+              src="https://bit.ly/dan-abramov"
+              borderRadius="full"
+            />
+          </Avatar.Root>
+          <Menu.Root>
+            <Menu.Trigger _focus={{ boxShadow: "none", outline: "none" }}>
+              
+                <Text 
+                  ml={2} 
+                  fontSize="md"
+                  _hover={{ textDecoration: "underline", textDecorationColor: "blackAlpha.300" }}  
+                >
+                  {/* {user ? `${user.firstName} ${user.lastName}` : "Loading..."} */}
+                  {user ? `${user.email}` : "Loading..."}
+                </Text>
+              
+            </Menu.Trigger>
+            <Portal>
+              <Menu.Positioner>
+                <Menu.Content>
+                  <Menu.Item
+                    _focus={{
+                      boxShadow: "none",
+                      outline: "none",
+                      background: "gray.100",
+                    }}
+                  >
+                    <ChakraLink
+                      as={RouterLink}
+                      to="/me"
+                      _focus={{ boxShadow: "none", outline: "none" }}
+                    >
+                      Account Settings
+                    </ChakraLink>
+                  </Menu.Item>
+                  <Menu.Item
+                    _focus={{
+                      boxShadow: "none",
+                      outline: "none",
+                      background: "gray.100",
+                    }}
+                  >
+                    <ChakraLink
+                      as={RouterLink}
+                      _focus={{ boxShadow: "none", outline: "none" }}
+                      onClick={() => {
+                        logout({
+                          logoutParams: { returnTo: window.location.origin },
+                        });
+                        sessionStorage.clear();
+                      }}
+                    >
+                      Logout
+                    </ChakraLink>
+                  </Menu.Item>
+                </Menu.Content>
+              </Menu.Positioner>
+            </Portal>
+          </Menu.Root>
+        </HStack>
+      </Flex>
+    </>
   );
 };
 

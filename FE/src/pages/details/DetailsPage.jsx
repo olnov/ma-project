@@ -1,4 +1,4 @@
-import CardDetails from "../components/details/CardDetails";
+import CardDetails from "../../components/details/CardDetails";
 import { useParams, useNavigate } from "react-router-dom";
 import { Text, Box, Button } from "@chakra-ui/react";
 
@@ -13,7 +13,7 @@ const DetailsPage = () => {
         Campaign Details
       </Text>
       <CardDetails campaignId={campaignId} />
-      <Button colorPalette="blue.500" mt={4} onClick={() => navigate("/dashboard")}>
+      <Button variant={"surface"} colorPalette={"gray"} mt={4} onClick={() => navigate("/dashboard")}>
         Back to Dashboard
       </Button>
     </Box>

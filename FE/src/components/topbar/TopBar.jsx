@@ -11,7 +11,8 @@ import {
 import { Link as ChakraLink } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
-import { useUser } from "../contexts/UserContext";
+import { useUser } from "../../contexts/UserContext";
+import "./TopBar.css";
 
 const TopBar = () => {
   const { logout } = useAuth0();
@@ -27,19 +28,20 @@ const TopBar = () => {
         right="0"
         height="60px"
         zIndex="1000"
-        bg="yellow.100"
+        bg="yellow.200"
+        opacity={0.9}
         color="gray.800"
         align="center"
         px={6}
-        shadow="md"
-        rounded={"md"}
+        border={"1px solid"}
+        borderColor="gray.200"
       >
-        <Heading size="md">Makers Agency</Heading>
-        <HStack spacing={4} ml={6} flex={1}>
-          <ChakraLink as={RouterLink} to="/dashboard">
+        <Heading size="2xl" className="pacifico-regular">Feedly</Heading>
+        <HStack spacing={10} ml={6} flex={1}>
+          <ChakraLink as={RouterLink} to="/dashboard" style={{ textDecoration: "none" }}>
             My Campaigns
           </ChakraLink>
-          <ChakraLink as={RouterLink} to="/create-campaign">
+          <ChakraLink as={RouterLink} to="/create-campaign" style={{ textDecoration: "none" }}>
             Create Campaign
           </ChakraLink>
         </HStack>
@@ -81,6 +83,7 @@ const TopBar = () => {
                       as={RouterLink}
                       to="/me"
                       _focus={{ boxShadow: "none", outline: "none" }}
+                      style={{ textDecoration: "none" }}
                     >
                       Account Settings
                     </ChakraLink>
@@ -95,6 +98,7 @@ const TopBar = () => {
                     <ChakraLink
                       as={RouterLink}
                       _focus={{ boxShadow: "none", outline: "none" }}
+                      style={{ textDecoration: "none" }}
                       onClick={() => {
                         logout({
                           logoutParams: { returnTo: window.location.origin },

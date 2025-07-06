@@ -7,10 +7,10 @@ import {
 import { useAuth0 } from "@auth0/auth0-react";
 import { toaster } from "@/components/ui/toaster";
 import { useEffect, useState } from "react";
-import { getUser, patchUserProfile } from "../services/userService";
+import { getUser, patchUserProfile } from "../../services/userService";
 
-import UserAccountView from "../components/user/UserAccountView";
-import UserAccountForm from "../components/user/UserAccountForm";
+import UserAccountView from "../../components/user/UserAccountView";
+import UserAccountForm from "../../components/user/UserAccountForm";
 
 const UserAccount = () => {
   

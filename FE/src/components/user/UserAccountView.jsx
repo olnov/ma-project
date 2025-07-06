@@ -9,15 +9,16 @@ import {
 } from "@chakra-ui/react";
 import { toaster } from "@/components/ui/toaster";
 
-const SHAREABLE_PROFILE_BASE_URL = import.meta.env.VITE_SHAREABLE_PROFILE_BASE_URL;
+const SHAREABLE_PROFILE_BASE_URL = import.meta.env
+  .VITE_SHAREABLE_PROFILE_BASE_URL;
 
 const UserAccountView = ({ dbUser, onEdit }) => {
-  
   const handleShareProfile = () => {
     console.log("Share profile clicked");
     console.log("Profile URL:", `https://yourapp.com/user/${dbUser._id}`);
     const profileUrl = `${SHAREABLE_PROFILE_BASE_URL}/shareable-profile/${dbUser._id}`;
-    navigator.clipboard.writeText(profileUrl)
+    navigator.clipboard
+      .writeText(profileUrl)
       .then(() => {
         toaster.create({
           title: "Profile URL copied to clipboard!",
@@ -29,7 +30,8 @@ const UserAccountView = ({ dbUser, onEdit }) => {
         console.error("Failed to copy profile URL:", error);
         toaster.create({
           title: "Error copying profile URL",
-          description: "There was an error copying your profile URL. Please try again.",
+          description:
+            "There was an error copying your profile URL. Please try again.",
           type: "error",
         });
       });
@@ -92,15 +94,16 @@ const UserAccountView = ({ dbUser, onEdit }) => {
 
           <HStack justify="flex-end">
             <Button 
-              colorPalette="blue"
-              onClick={() => handleShareProfile()}
+                colorPalette="gray"
+                variant="surface" 
+                onClick={() => handleShareProfile()}
             >
               Share Profile
             </Button>
             <Button
               // size="sm"
-              // variant="surface"
-              colorPalette="blue"
+              variant="surface"
+              colorPalette={"gray"}
               // leftIcon={<FaEdit />}
               onClick={onEdit}
             >

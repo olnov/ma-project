@@ -16,11 +16,11 @@ import { useState, useEffect } from "react";
 import { FcCalendar, FcBusinessman, FcBusinesswoman } from "react-icons/fc";
 import { FaRegTrashAlt, FaEdit, FaSave } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa6";
-import { createCampaign } from "../services/CampaignService";
+import { createCampaign } from "../../services/CampaignService";
 import { toaster } from "@/components/ui/toaster";
 import { useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
-import { useUser } from "../contexts/UserContext";
+import { useUser } from "../../contexts/UserContext";
 
 const FEEDBACK_BASE_URL = import.meta.env.VITE_FEEDBACK_BASE_URL || "http://localhost:5173";
 const generateMemberId = () => crypto.randomUUID(); // This makes member links unique

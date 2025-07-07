@@ -10,13 +10,13 @@ import NoTopBarLayout from "./layouts/NoTopBarLayout.jsx";
 
 // Pages
 import NotFound from "./pages/NotFound.jsx";
-import CreateCampaign from "./pages/CreateCampaign.jsx";
-import DashboardPage from "./pages/DashboardPage.jsx";
-import HomePage from "./pages/HomePage.jsx";
-import DetailsPage from "./pages/DetailsPage.jsx";
-import UserAccount from "./pages/UserAccount.jsx";
-import FeedbackFormPage from "./pages/FeedBackFormPage.jsx";
+import CreateCampaign from "./pages/create-campaign/CreateCampaign.jsx";
+import DashboardPage from "./pages/dashboard/DashboardPage.jsx";
+import DetailsPage from "./pages/details/DetailsPage.jsx";
+import UserAccount from "./pages/user-account/UserAccount.jsx";
+import FeedbackFormPage from "./pages/feedback-form/FeedBackFormPage.jsx";
 import ShareableProfilePage from "./pages/shareable-profile/ShareableProfilePage.jsx";
+import FeedbackLandingPage from "./pages/landing-page/FeedbackLandingPage.jsx";
 
 // Dev pages
 import SyncUserTestPage from "./pages/dev/SyncUser.jsx";
@@ -26,7 +26,7 @@ const router = createBrowserRouter([
     path: "/", 
     element: (
       <NoTopBarLayout>
-        <HomePage />
+        <FeedbackLandingPage />
       </NoTopBarLayout>
     ),
   },

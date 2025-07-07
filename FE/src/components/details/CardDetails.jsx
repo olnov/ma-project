@@ -69,9 +69,9 @@ const CardDetails = (campaignId) => {
             <Text fontSize="2xl" fontWeight="bold">
               {campaign.title}
             </Text>
-            <Badge colorPalette={"green"} size={"md"}>
+            {/* <Badge colorPalette={"green"} size={"md"}>
               Created By: {campaign.createdBy.email}
-            </Badge>
+            </Badge> */}
           </Card.Header>
           <Card.Body>
             <List.Root>

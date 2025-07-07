@@ -1,7 +1,7 @@
-import { getCampaignsByUser } from "../services/CampaignService";
+import { getCampaignsByUser } from "../../services/CampaignService";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useUser } from "../contexts/UserContext";
+import { useUser } from "../../contexts/UserContext";
 import { useAuth0 } from "@auth0/auth0-react";
 import {
   Box,

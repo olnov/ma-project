@@ -1,5 +1,5 @@
 import { Box } from "@chakra-ui/react";
-import TopBar from "../components/TopBar";
+import TopBar from "../components/topbar/TopBar";
 
 const TopBarLayout = ({ children }) => {
   return (

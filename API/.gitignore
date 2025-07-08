@@ -1,3 +1,5 @@
 node_modules
+_data
+._data/
 ./node_modules
 .env

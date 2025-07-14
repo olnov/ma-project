@@ -26,7 +26,7 @@ const Navbar = () => {
       borderColor="gray.200"
     >
       <Heading size="2xl" className="pacifico-regular">
-        Feedly
+        RevYou
       </Heading>
       <HStack ml={6} flex={1}>
         <a href="#features" style={{ textDecoration: "none" }}>

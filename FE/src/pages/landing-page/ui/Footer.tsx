@@ -24,7 +24,7 @@ const Footer = () => {
       >
         <Box>
           <Text fontSize="lg" fontWeight="bold">
-            Feedly
+            RevYou
           </Text>
         </Box>
         <Text fontSize="md" color="gray.400" mt={2}>
@@ -45,7 +45,7 @@ const Footer = () => {
           reserved.
         </Text>
         <Text fontSize="sm" color="gray.400">
-          Made with ❤️ by Feedly Team
+          Made with ❤️ by RevYou Team
         </Text>
       </Container>
     </Flex>

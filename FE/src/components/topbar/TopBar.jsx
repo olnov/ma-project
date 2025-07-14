@@ -36,7 +36,7 @@ const TopBar = () => {
         border={"1px solid"}
         borderColor="gray.200"
       >
-        <Heading size="2xl" className="pacifico-regular">Feedly</Heading>
+        <Heading size="2xl" className="pacifico-regular">RevYou</Heading>
         <HStack spacing={10} ml={6} flex={1}>
           <ChakraLink as={RouterLink} to="/dashboard" style={{ textDecoration: "none" }}>
             My Campaigns

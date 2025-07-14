@@ -24,7 +24,7 @@ const Features = () => {
         lineHeight="0.6"
         textAlign="center"
       >
-        Why Choose Feedly?
+        Why Choose RevYou?
       </Heading>
       <Text
         fontSize={["lg", "xl", "2xl"]}
@@ -34,7 +34,7 @@ const Features = () => {
         mx="auto"
         lineHeight="relaxed"
       >
-        Discover the key features that make Feedly the best choice for your
+        Discover the key features that make RevYou the best choice for your
         feedback needs.
       </Text>
       <HStack

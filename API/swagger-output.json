@@ -169,6 +169,28 @@
           "campaigns"
         ],
         "description": "",
+        "parameters": [
+          {
+            "name": "saveFeedback",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "campaignId": {
+                  "example": "any"
+                },
+                "linkUuid": {
+                  "example": "any"
+                },
+                "responseContents": {
+                  "example": "any"
+                }
+              }
+            },
+            "description": "Save feedback for a campaign",
+            "required": true
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"

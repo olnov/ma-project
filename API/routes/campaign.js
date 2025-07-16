@@ -20,7 +20,8 @@ router.patch('/save-feedback', saveCampaignFeedbackController
     /* #swagger.parameters['saveFeedback'] = {
             in: 'body',
             description: 'Save feedback for a campaign',
-            required: true */
+            required: true 
+        }*/
 );
 router.get('/user/:userId', checkJwt, getCampaignsByUserId
     /* #swagger.parameters['userId'] = {

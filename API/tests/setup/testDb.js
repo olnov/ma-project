@@ -9,14 +9,25 @@ beforeAll(async () => {
     await mongoose.connect(uri);
 });
 afterAll(async () => {
-    await mongoose.connection.dropDatabase();
-    await mongoose.connection.close();
-    await mongo.stop();
+    try {
+        await mongoose.connection.dropDatabase();
+        await mongoose.connection.close();
+        if (mongo) {
+            await mongo.stop();
+        }
+        console.log("🧹 MongoMemoryServer stopped cleanly.");
+    } catch (err) {
+        console.error("Error during MongoMemoryServer teardown:", err);
+    }
 });
 afterEach(async () => {
-    const collections = mongoose.connection.collections;
-    for (const key in collections) {
-    const collection = collections[key];g,
-    await collection.deleteMany();
+    try {
+        const collections = mongoose.connection.collections;
+        for (const key in collections) {
+            const collection = collections[key];
+            await collection.deleteMany();
+        }
+    } catch (err) {
+        console.error("Error in afterEach while deleting collections:", err);
     }
 });

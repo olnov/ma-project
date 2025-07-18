@@ -12,18 +12,15 @@ const getUser = async (req, res) => {
     let user;
     try {
       user = await getUserByauth0Sub(auth0Sub);
-      // {
-      //   "sub":"sdfsdf",
-      //   "email":"
-      // }
 
       if (!user) {
         return res.status(404).json({ message: "Can't seem to find that user..."});
       }
-      res.status(200).json({ user: user });
+      return res.status(200).json({ user: user });
 
     } catch (error) {
-      console.error("Error fetching user:", error);;
+      console.error("Error fetching user:", error);
+      return res.status(500).json({ error: "Server error" });
     }
 };
 
@@ -44,7 +41,7 @@ const syncUser = async (req, res) => {
 
     if (!user) {
       user = await createUser(auth0Sub, req.body.user); //user info extracted from decoded ID token
-      res.status(200).json({ message: "User added to database", user: user });
+      res.status(201).json({ message: "User added to database", user: user });
 
     } else {
       console.log("User already in database:", user);

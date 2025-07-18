@@ -1,0 +1,2 @@
+require('./authMock');
+require('./testDb');

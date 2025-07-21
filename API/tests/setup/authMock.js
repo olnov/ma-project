@@ -17,6 +17,13 @@ const mockNonExistentUserPayload = {
 	}
 };
 
+const mockUserUpdates = {
+	email: 'updated-test_email@example.com',
+	username: 'updatedTestUsername',
+	firstName: 'UpdatedTestFirstName',
+	lastName: 'UpdatedTestLastName',
+};
+
 const mockToken = 'mocktoken123';
 
 const mockCheckJwt = jest.fn((req, res, next) => {
@@ -36,7 +43,8 @@ jest.mock('../../middleware/checkJwt', () => mockCheckJwt);
 module.exports = {
 	mockExistingUser,
 	mockNonExistentUserPayload,
-  mockCheckJwt,
+	mockUserUpdates,
 	mockToken,
+  mockCheckJwt,
 };
 

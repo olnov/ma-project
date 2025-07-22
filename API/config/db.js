@@ -9,14 +9,15 @@ const connectDB = async () => {
         }
 
     try {
-        await mongoose.connect(MONGO_URI, {
+        const conn = await mongoose.connect(MONGO_URI, {
             // useNewUrlParser: true,
             // useUnifiedTopology: true,
         });
         console.log("MongoDB connected successfully");
+        return conn;
     } catch (err) {
         console.error("Failed to connect to MongoDB", err);
-        process.exit(1);
+        throw err;
     }
 };
 

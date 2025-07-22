@@ -3,27 +3,24 @@ const {getUserByauth0Sub, createUser, updateUserProfile } = require('../services
 
 const getUser = async (req, res) => {
     const auth0Sub = req.auth.payload.sub; 
+    // console.log("GET USER req: ", req);
+    console.log("GET USER req.auth: ", req.auth);
     //Always get sub from Access token (decoded with checkJwt), not from ID token
-
     if (!auth0Sub) {
         return res.status(400).json({ error: "Auth0 sub missing from token payload." });
     } 
 
     let user;
     try {
-      user = await getUserByauth0Sub(auth0Sub);
-      // {
-      //   "sub":"sdfsdf",
-      //   "email":"
-      // }
-
+      user = await getUserByauth0Sub(auth0Sub)
       if (!user) {
-        return res.status(404).json({ message: "Can't seem to find that user..."});
+        return res.status(404).json({ message: "User not found."});
       }
       res.status(200).json({ user: user });
 
     } catch (error) {
-      console.error("Error fetching user:", error);;
+      console.error("Error fetching user:", error);
+      res.status(500).json({ error: "Internal server error while fetching user." });
     }
 };
 
@@ -32,8 +29,6 @@ const getUser = async (req, res) => {
 const syncUser = async (req, res) => {
   const auth0Sub = req.auth.payload.sub;
   //Always get sub from Access token (decoded with checkJwt), not from ID token
-  console.log("syncUser called with auth0Sub:", auth0Sub);
-
   if (!auth0Sub) {
     return res.status(400).json({ error: "Auth0 sub missing from token payload." });
   }
@@ -41,11 +36,9 @@ const syncUser = async (req, res) => {
   let user;
   try {
     user = await getUserByauth0Sub(auth0Sub);
-
     if (!user) {
       user = await createUser(auth0Sub, req.body.user); //user info extracted from decoded ID token
-      res.status(200).json({ message: "User added to database", user: user });
-
+      res.status(201).json({ message: "User added to database", user: user });
     } else {
       console.log("User already in database:", user);
       res.status(200).json({ message: "User already exists", user: user });
@@ -53,7 +46,7 @@ const syncUser = async (req, res) => {
 
   } catch (error) {
     console.error("Error syncing user:", error);
-    res.status(500).json({ error: "Failed to sync user" });
+    res.status(500).json({ error: "Internal server error while syncing user" });
   }
 };
 
@@ -61,15 +54,14 @@ const syncUser = async (req, res) => {
 const updateUser = async (req, res) => {
   const auth0Sub = req.auth.payload.sub;
   //Always get sub from Access token (decoded with checkJwt), not from ID token
-  
   const updates = req.body.updates;
 
   if (!auth0Sub) {
     return res.status(400).json({ error: "Auth0 sub missing from token payload." });
   }
 
+  // Ensure updates is an object
   if (!updates || typeof(updates) !== "object") {
-    // Ensure updates is an object
     return res.status(400).json({ error: "Missing or invalid updates payload." });
   }
 

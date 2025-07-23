@@ -1,3 +1,5 @@
+// This file is run automatically by Jest before tests (via setupFilesAfterEnv)
+
 console.log("authMock setup file loaded");
 
 const mockExistingUser = {
@@ -26,6 +28,7 @@ const mockUserUpdates = {
 
 const mockToken = 'mocktoken123';
 
+// mocks Auth0 middleware
 const mockCheckJwt = jest.fn((req, res, next) => {
   console.log("✅ MOCK checkJwt running");
   req.auth = {

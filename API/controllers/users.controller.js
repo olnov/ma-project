@@ -3,8 +3,6 @@ const {getUserByauth0Sub, createUser, updateUserProfile } = require('../services
 
 const getUser = async (req, res) => {
     const auth0Sub = req.auth.payload.sub; 
-    // console.log("GET USER req: ", req);
-    console.log("GET USER req.auth: ", req.auth);
     //Always get sub from Access token (decoded with checkJwt), not from ID token
     if (!auth0Sub) {
         return res.status(400).json({ error: "Auth0 sub missing from token payload." });

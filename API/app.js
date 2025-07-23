@@ -30,6 +30,7 @@ if (NODE_ENV === 'development') {
 
 
 // Routes with Swagger tags
+// app.use('/api/v1/users', usersRouter /* #swagger.tags=['users'] */);
 app.use('/api/v1/users', usersRouter
   //  #swagger.tags=['users']
 );

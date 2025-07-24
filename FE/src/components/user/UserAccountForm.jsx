@@ -35,6 +35,7 @@ const UserAccountForm = ({ dbUser, onSave, onCancel }) => {
             maxW="600px"
             mx="auto"
             my={6}
+            _dark={{ bg:"blackAlpha.100"}}
         >
             <Card.Body>
                 <form onSubmit={handleSubmit(onSubmit)}>
@@ -49,6 +50,7 @@ const UserAccountForm = ({ dbUser, onSave, onCancel }) => {
                                 type="text"
                                 placeholder="First name"
                                 bg="white"
+                                _dark={{ bg:"whiteAlpha.300"}}
                                 {...register("firstName", {
                                 required: "First name is required",
                                 pattern: {
@@ -73,6 +75,7 @@ const UserAccountForm = ({ dbUser, onSave, onCancel }) => {
                                 type="text"
                                 placeholder="Last name"
                                 bg="white"
+                                _dark={{ bg:"whiteAlpha.300"}}
                                 {...register("lastName", {
                                 required: "Last name is required",
                                 pattern: {
@@ -97,6 +100,7 @@ const UserAccountForm = ({ dbUser, onSave, onCancel }) => {
                                 type="text"
                                 placeholder="Username"
                                 bg="white"
+                                _dark={{ bg:"whiteAlpha.300"}}
                                 {...register("username", {
                                 pattern: {
                                     value: /^[a-zA-Z0-9_]+$/,
@@ -123,6 +127,7 @@ const UserAccountForm = ({ dbUser, onSave, onCancel }) => {
                                 type="email"
                                 placeholder="Email"
                                 bg="white"
+                                _dark={{ bg:"whiteAlpha.300"}}
                                 {...register("email", {
                                 required: "Email is required",
                                 pattern: {

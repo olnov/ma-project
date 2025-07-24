@@ -105,7 +105,7 @@ const ProjectEditor = ({ initialValues, onSave, onCancel }) => {
   };
 
   return (
-    <Card.Root size="sm" bgColor="blue.50">
+    <Card.Root size="sm" bgColor="blue.50"  _dark={{ bg: "blackAlpha.100" }}>
       <Card.Body padding={3}>
         <VStack spacing={3} align="stretch">
           <Input
@@ -150,7 +150,7 @@ const ProjectEditor = ({ initialValues, onSave, onCancel }) => {
             />
           ))}
 
-          <Button onClick={handleAddMember}>+ Add member</Button>
+          <Button onClick={handleAddMember} _dark={{ bg:"whiteAlpha.200"}}>+ Add member</Button>
 
           <HStack justify="flex-end" spacing={2}>
             <Button size="sm" variant="outline" onClick={onCancel}>
@@ -161,6 +161,7 @@ const ProjectEditor = ({ initialValues, onSave, onCancel }) => {
               colorPalette="blue"
               leftIcon={<FaSave size={12} />}
               onClick={handleSave}
+              _dark={{ bg:"#528162ff"}}
             >
               Save
             </Button>
@@ -291,6 +292,7 @@ const CreateCampaign = () => {
               size="sm"
               bgColor="orange.50"
               shadow="md"
+              _dark={{ bg: "blackAlpha.100" }}
             >
               <Card.Body padding={3}>
                 <Flex justify="space-between" align="center">

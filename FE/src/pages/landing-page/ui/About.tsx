@@ -10,6 +10,7 @@ const About = () => {
             border={"1px solid"}
             borderColor="gray.200"
             id="about"
+            _dark={{ bg:"#222327ff", bgGradient:"none", border:"1px", borderColor: "black" }}
         >
             <Container maxW="container.md">
                 <Heading as="h2" size="xl" mb={6}>

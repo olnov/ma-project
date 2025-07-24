@@ -20,6 +20,7 @@ const Hero = () => {
       position="relative"
       border={"1px solid"}
       borderColor="gray.200"
+      _dark={{ bg:"#222327ff", border:"1px", borderColor: "black" }}
     >
       <Container
         maxW="4xl"
@@ -40,6 +41,7 @@ const Hero = () => {
               as="h1"
               fontWeight="bold"
               color="gray.900"
+              _dark={{ color: "#ffffffff" }}
               mb={6}
               fontSize={["2xl", "4xl", "5xl", "6xl"]}
               lineHeight="0.9"
@@ -47,7 +49,7 @@ const Hero = () => {
             >
               Get honest feedback
               <br />
-              <Box as="span" color="green.600">
+              <Box as="span" color="green.600" _dark={{ color: "#048535"}} >
                 from your team
               </Box>
             </Heading>
@@ -68,6 +70,7 @@ const Hero = () => {
           <Text
             fontSize={["lg", "xl", "2xl"]}
             color="gray.600"
+            _dark={{ color:"white" }}
             mb={12}
             maxW="2xl"
             mx="auto"
@@ -84,22 +87,22 @@ const Hero = () => {
             mx="auto"
           >
             <Box>
-              <Text fontSize="3xl" fontWeight="bold" color="gray.900" mb={2}>
+              <Text fontSize="3xl" fontWeight="bold" color="gray.900" mb={2} _dark={{ color: "#048535"}} >
                 10,000+
               </Text>
-              <Text color="gray.600">Active users</Text>
+              <Text color="gray.600" _dark={{ color:"white" }} >Active users</Text>
             </Box>
             <Box>
-              <Text fontSize="3xl" fontWeight="bold" color="gray.900" mb={2}>
+              <Text fontSize="3xl" fontWeight="bold" color="gray.900" mb={2} _dark={{ color: "#048535"}}>
                 50,000+
               </Text>
-              <Text color="gray.600">Feedback requests</Text>
+              <Text color="gray.600" _dark={{ color:"white" }} >Feedback requests</Text>
             </Box>
             <Box>
-              <Text fontSize="3xl" fontWeight="bold" color="gray.900" mb={2}>
+              <Text fontSize="3xl" fontWeight="bold" color="gray.900" mb={2} _dark={{ color: "#048535"}}>
                 4.9/5
               </Text>
-              <Text color="gray.600">User rating</Text>
+              <Text color="gray.600" _dark={{ color:"white" }} >User rating</Text>
             </Box>
           </SimpleGrid>
         </Box>

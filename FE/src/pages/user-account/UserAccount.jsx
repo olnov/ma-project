@@ -90,7 +90,7 @@ const UserAccount = () => {
   };
 
   return (
-    <Box padding="20px">
+    <Box padding="20px" >
 
         <Text fontSize="xl" fontWeight="bold" mb={4}>
           My Account

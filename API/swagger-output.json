@@ -10,7 +10,864 @@
       "url": "http://localhost:5000/"
     }
   ],
-  "paths": {},
+  "paths": {
+    "/api/v1/users/sync": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Sync Auth0 user with database",
+        "description": "Creates a new user in the database if they do not already exist.",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "required": true,
+            "description": "User info from Auth0 ID token",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "user": {
+                  "type": "object",
+                  "properties": {
+                    "sub": {
+                      "type": "string",
+                      "example": "auth0|example-sub"
+                    },
+                    "email": {
+                      "type": "string",
+                      "example": "example@example.com"
+                    },
+                    "nickname": {
+                      "type": "string",
+                      "example": "exampleUsername"
+                    },
+                    "given_name": {
+                      "type": "string",
+                      "example": "FirstName"
+                    },
+                    "family_name": {
+                      "type": "string",
+                      "example": "LastName"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User already exists",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "User already exists"
+                    },
+                    "user": {
+                      "type": "object",
+                      "properties": {
+                        "_id": {
+                          "type": "string",
+                          "example": "string"
+                        },
+                        "auth0Id": {
+                          "type": "string",
+                          "example": "auth0|example-sub"
+                        },
+                        "email": {
+                          "type": "string",
+                          "example": "example@example.com"
+                        },
+                        "firstName": {
+                          "type": "string",
+                          "example": "FirstName"
+                        },
+                        "lastName": {
+                          "type": "string",
+                          "example": "LastName"
+                        },
+                        "username": {
+                          "type": "string",
+                          "example": "exampleUsername"
+                        }
+                      }
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "User already exists"
+                    },
+                    "user": {
+                      "type": "object",
+                      "properties": {
+                        "_id": {
+                          "type": "string",
+                          "example": "string"
+                        },
+                        "auth0Id": {
+                          "type": "string",
+                          "example": "auth0|example-sub"
+                        },
+                        "email": {
+                          "type": "string",
+                          "example": "example@example.com"
+                        },
+                        "firstName": {
+                          "type": "string",
+                          "example": "FirstName"
+                        },
+                        "lastName": {
+                          "type": "string",
+                          "example": "LastName"
+                        },
+                        "username": {
+                          "type": "string",
+                          "example": "exampleUsername"
+                        }
+                      }
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "User successfully created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "User added to database"
+                    },
+                    "user": {
+                      "type": "object",
+                      "properties": {
+                        "_id": {
+                          "type": "string",
+                          "example": "string"
+                        },
+                        "auth0Id": {
+                          "type": "string",
+                          "example": "auth0|example-sub"
+                        },
+                        "email": {
+                          "type": "string",
+                          "example": "example@example.com"
+                        },
+                        "firstName": {
+                          "type": "string",
+                          "example": "FirstName"
+                        },
+                        "lastName": {
+                          "type": "string",
+                          "example": "LastName"
+                        },
+                        "username": {
+                          "type": "string",
+                          "example": "exampleUsername"
+                        }
+                      }
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "User added to database"
+                    },
+                    "user": {
+                      "type": "object",
+                      "properties": {
+                        "_id": {
+                          "type": "string",
+                          "example": "string"
+                        },
+                        "auth0Id": {
+                          "type": "string",
+                          "example": "auth0|example-sub"
+                        },
+                        "email": {
+                          "type": "string",
+                          "example": "example@example.com"
+                        },
+                        "firstName": {
+                          "type": "string",
+                          "example": "FirstName"
+                        },
+                        "lastName": {
+                          "type": "string",
+                          "example": "LastName"
+                        },
+                        "username": {
+                          "type": "string",
+                          "example": "exampleUsername"
+                        }
+                      }
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Internal server error while syncing user"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Internal server error while syncing user"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "user": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/users/me": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Fetch user by Auth0 sub",
+        "description": "Returns user profile data for the authenticated user",
+        "responses": {
+          "200": {
+            "description": "User found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "user": {
+                      "type": "object",
+                      "properties": {
+                        "_id": {
+                          "type": "string",
+                          "example": "string"
+                        },
+                        "auth0Id": {
+                          "type": "string",
+                          "example": "auth0|example-sub"
+                        },
+                        "email": {
+                          "type": "string",
+                          "example": "example@example.com"
+                        },
+                        "firstName": {
+                          "type": "string",
+                          "example": "FirstName"
+                        },
+                        "lastName": {
+                          "type": "string",
+                          "example": "LastName"
+                        },
+                        "username": {
+                          "type": "string",
+                          "example": "exampleUsername"
+                        }
+                      }
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "user": {
+                      "type": "object",
+                      "properties": {
+                        "_id": {
+                          "type": "string",
+                          "example": "string"
+                        },
+                        "auth0Id": {
+                          "type": "string",
+                          "example": "auth0|example-sub"
+                        },
+                        "email": {
+                          "type": "string",
+                          "example": "example@example.com"
+                        },
+                        "firstName": {
+                          "type": "string",
+                          "example": "FirstName"
+                        },
+                        "lastName": {
+                          "type": "string",
+                          "example": "LastName"
+                        },
+                        "username": {
+                          "type": "string",
+                          "example": "exampleUsername"
+                        }
+                      }
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "User not found"
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Internal server error while fetching user"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Internal server error while fetching user"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/users/me/update-profile": {
+      "patch": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Update user profile",
+        "description": "Updates allowed fields in the user profile. Allowed fields: email, firstName, lastName, username",
+        "parameters": [
+          {
+            "name": "updates",
+            "in": "body",
+            "required": true,
+            "description": "Fields to update",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "updates": {
+                  "type": "object",
+                  "properties": {
+                    "email": {
+                      "type": "string",
+                      "example": "updated@example.com"
+                    },
+                    "firstName": {
+                      "type": "string",
+                      "example": "UpdatedFirst"
+                    },
+                    "lastName": {
+                      "type": "string",
+                      "example": "UpdatedLast"
+                    },
+                    "username": {
+                      "type": "string",
+                      "example": "updatedUsername"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "User updated"
+                    },
+                    "user": {
+                      "type": "object",
+                      "properties": {
+                        "_id": {
+                          "type": "string",
+                          "example": "string"
+                        },
+                        "auth0Id": {
+                          "type": "string",
+                          "example": "auth0|example-sub"
+                        },
+                        "email": {
+                          "type": "string",
+                          "example": "updated@example.com"
+                        },
+                        "firstName": {
+                          "type": "string",
+                          "example": "UpdatedFirst"
+                        },
+                        "lastName": {
+                          "type": "string",
+                          "example": "UpdatedLast"
+                        },
+                        "username": {
+                          "type": "string",
+                          "example": "updatedUsername"
+                        }
+                      }
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "User updated"
+                    },
+                    "user": {
+                      "type": "object",
+                      "properties": {
+                        "_id": {
+                          "type": "string",
+                          "example": "string"
+                        },
+                        "auth0Id": {
+                          "type": "string",
+                          "example": "auth0|example-sub"
+                        },
+                        "email": {
+                          "type": "string",
+                          "example": "updated@example.com"
+                        },
+                        "firstName": {
+                          "type": "string",
+                          "example": "UpdatedFirst"
+                        },
+                        "lastName": {
+                          "type": "string",
+                          "example": "UpdatedLast"
+                        },
+                        "username": {
+                          "type": "string",
+                          "example": "updatedUsername"
+                        }
+                      }
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Missing or invalid updates payload."
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Internal server error while updating user"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Internal server error while updating user"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "updates": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/campaigns/": {
+      "post": {
+        "tags": [
+          "campaigns"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "createCampaign",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "example": "any"
+                },
+                "description": {
+                  "example": "any"
+                },
+                "createdBy": {
+                  "example": "any"
+                },
+                "projects": {
+                  "example": "any"
+                }
+              }
+            },
+            "description": "Create a new campaign",
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "example": "any"
+                  },
+                  "description": {
+                    "example": "any"
+                  },
+                  "createdBy": {
+                    "example": "any"
+                  },
+                  "projects": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/campaigns/save-feedback": {
+      "patch": {
+        "tags": [
+          "campaigns"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "saveFeedback",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "campaignId": {
+                  "example": "any"
+                },
+                "linkUuid": {
+                  "example": "any"
+                },
+                "responseContents": {
+                  "example": "any"
+                }
+              }
+            },
+            "description": "Save feedback for a campaign",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "campaignId": {
+                    "example": "any"
+                  },
+                  "linkUuid": {
+                    "example": "any"
+                  },
+                  "responseContents": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/campaigns/user/{userId}": {
+      "get": {
+        "tags": [
+          "campaigns"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Retrieve all campaigns created by a user"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/v1/campaigns/campaign/{campaignId}": {
+      "get": {
+        "tags": [
+          "campaigns"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "campaignId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Retrieve a campaign object by its ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/v1/campaigns/link/{linkUuid}": {
+      "get": {
+        "tags": [
+          "campaigns"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "linkUuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Retrieve a parent campaign object by one of the child link UUIDs"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/v1/shareable-profiles/{userId}": {
+      "get": {
+        "tags": [
+          "shareable-profiles"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  },
   "components": {
     "securitySchemes": {
       "bearerAuth": {

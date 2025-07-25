@@ -1,13 +1,10 @@
 import {
   Box,
-  Button,
   Card,
   HStack,
-  Input,
   Flex,
   Text,
   VStack,
-  Grid,
   Avatar,
 } from "@chakra-ui/react";
 
@@ -15,7 +12,7 @@ export const ShareableProfileView = ({ profileData }) => {
   if (!profileData || profileData.length === 0) {
     return (
       <Box>
-        <Card.Root bgColor="orange.50" shadow="md" maxW="600px">
+        <Card.Root bgColor="orange.50" shadow="md" maxW="600px" _dark={{ bg:"blackAlpha.100"}}>
           <Card.Body>
             <Text fontSize="xl" fontWeight="bold" mb={4}>
               No Feedbacks Available
@@ -79,6 +76,7 @@ export const ShareableProfileView = ({ profileData }) => {
               bgColor="orange.50"
               shadow="md"
               mb={4}
+              _dark={{ bg:"blackAlpha.100"}}
             >
               <Card.Body>
                 <VStack spacing={4} align="stretch">
@@ -88,6 +86,7 @@ export const ShareableProfileView = ({ profileData }) => {
                     p={3}
                     borderRadius="md"
                     border={"1px solid #ccc"}
+                    _dark={{ bg:"whiteAlpha.200"}}
                   >
                     <Text fontSize="xs" fontFamily={"mono"}>
                       {response.content}

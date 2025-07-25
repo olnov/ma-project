@@ -29,12 +29,11 @@ const TopBar = () => {
         height="60px"
         zIndex="1000"
         bg="yellow.200"
+        _dark={{ bg: "gray.700", color: "white", opacity:"1" }}
         opacity={0.9}
         color="gray.800"
         align="center"
         px={6}
-        border={"1px solid"}
-        borderColor="gray.200"
       >
         <Heading size="2xl" className="pacifico-regular">RevYou</Heading>
         <HStack spacing={10} ml={6} flex={1}>

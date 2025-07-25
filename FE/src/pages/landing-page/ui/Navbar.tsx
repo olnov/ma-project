@@ -1,10 +1,4 @@
-import {
-  Flex,
-  Heading,
-  Spacer,
-  HStack,
-  Button,
-} from "@chakra-ui/react";
+import { Flex, Heading, Spacer, HStack, Button } from "@chakra-ui/react";
 import LoginButton from "../../../components/authentication/LoginButton";
 
 const Navbar = () => {
@@ -18,12 +12,11 @@ const Navbar = () => {
       height="60px"
       zIndex="1000"
       bg="yellow.200"
+      _dark={{ bg: "gray.700", color: "white", opacity:"1" }}
       opacity={0.9}
       color="gray.800"
       align="center"
       px={6}
-      border={"1px solid"}
-      borderColor="gray.200"
     >
       <Heading size="2xl" className="pacifico-regular">
         RevYou
@@ -38,7 +31,6 @@ const Navbar = () => {
       </HStack>
       <Spacer />
       <HStack ml={6}>
-        {/* <Button>Login</Button> */}
         <LoginButton />
       </HStack>
     </Flex>

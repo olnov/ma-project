@@ -79,6 +79,7 @@ const DashboardPage = () => {
           placeholder="Filter campaigns by title..."
           size="md"
           name="search"
+          _dark={{ color: "white" }}
           onChange={(e) => handleSearch(e.target.value)}
         />
       </HStack>
@@ -91,21 +92,22 @@ const DashboardPage = () => {
                 size="sm"
                 bgColor="orange.50"
                 shadow="md"
+                _dark={{ bg: "#282828" }}
               >
                 <Card.Body padding={3}>
                   <Flex direction="column" justify="space-between">
                     <Box>
-                      <Text fontWeight="bold">{campaign.title}</Text>
-                      <Text fontSize="sm" color="gray.600">
+                      <Text fontWeight="bold" _dark={{ color: "#048535"}}>{campaign.title}</Text>
+                      <Text fontSize="sm" color="gray.600" _dark={{ color: "white" }}>
                         Total projects: {campaign.projects.length}
                       </Text>
-                      <Text fontSize="sm" color="gray.600">
+                      <Text fontSize="sm" color="gray.600" _dark={{ color: "white" }}>
                         Total respondents:{" "}
                         {campaign.projects
                           .map((project) => project.team.length)
                           .reduce((sum, count) => sum + count, 0)}
                       </Text>
-                      <Text fontSize="sm" color="gray.600">
+                      <Text fontSize="sm" color="gray.600" _dark={{ color: "white" }}>
                         Fedbacks provided:
                         {campaign.projects
                           .map((project) =>
@@ -137,6 +139,7 @@ const DashboardPage = () => {
               shadow="md"
               position="sticky"
               height="fit-content"
+              _dark={{ bg: "#8b8b8b" }}
             >
               <Card.Body padding={4}>
                 <Text fontWeight="bold" mb={3}>

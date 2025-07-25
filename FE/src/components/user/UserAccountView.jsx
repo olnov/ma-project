@@ -38,7 +38,7 @@ const UserAccountView = ({ dbUser, onEdit }) => {
   };
 
   return (
-    <Card.Root bgColor="orange.50" shadow="md" maxW="600px" mx="auto" my={6}>
+    <Card.Root bgColor="orange.50" shadow="md" maxW="600px" mx="auto" my={6} _dark={{ bg:"blackAlpha.100"}}>
       <Card.Body>
         <VStack spacing={4} align="stretch">
           <Field.Root mt={3}>

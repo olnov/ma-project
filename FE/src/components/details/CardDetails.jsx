@@ -64,7 +64,7 @@ const CardDetails = (campaignId) => {
   return (
     <>
       {campaign ? (
-        <Card.Root>
+        <Card.Root _dark={{ bg: "#282828" }}>
           <Card.Header>
             <Text fontSize="2xl" fontWeight="bold">
               {campaign.title}
@@ -90,7 +90,7 @@ const CardDetails = (campaignId) => {
                           {/* <List.Item>Role: {member.role}</List.Item> */}
                           <List.Item>
                             Email: {" "}
-                            <Text color={"blue"} as="span">
+                            <Text color={"blue"} as="span" fontFamily={'mono'} _dark={{ color:"gray.300"}}>
                                 {member.email}
                             </Text>
                             <Button
@@ -103,7 +103,7 @@ const CardDetails = (campaignId) => {
                           </List.Item>
                           <List.Item>
                             Personal link: {" "}
-                            <Text color={"blue"} as="span">{member.link}</Text>
+                            <Text color={"blue"} as="span" fontFamily={'mono'} _dark={{ color:"gray.300"}}>{member.link}</Text>
                             <Button
                               size="xs"
                               onClick={() => handleCopyLink(member.link)}
@@ -119,11 +119,11 @@ const CardDetails = (campaignId) => {
                             <List.Item>
                               Response: 
                                 {member.responses.map((response) => ( 
-                                  <Box bg="yellow.100" p={2} mt={1} borderRadius="md" border={"1px solid #ccc"}>
+                                  <Box bg="yellow.100" p={2} mt={1} borderRadius="md" border={"1px solid #ccc"} _dark={{ bg:"#303934"}}>
                                   {response.content}
                                   <br/>
                                   {" "}
-                                  <Text fontFamily={"mono"} fontSize="sm" color="gray.500">
+                                  <Text fontFamily={"mono"} fontSize="sm" color="gray.500" _dark={{ color:"gray.300"}}>
                                   Responded at:
                                   {formatDate(response.createdAt)}
                                   </Text>

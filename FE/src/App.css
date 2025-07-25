@@ -5,6 +5,7 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  color-scheme: light dark;
 }
 
 body {
@@ -13,4 +14,6 @@ body {
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
+  color: light-dark(#333b3c, #efefec);
+  background-color: light-dark(rgb(255, 255, 255), #313237 );
 }

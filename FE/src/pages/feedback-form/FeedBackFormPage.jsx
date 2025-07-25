@@ -72,7 +72,7 @@ const FeedbackFormPage = () => {
 
   return (
     <>
-      <Box bg="white" p={4} borderRadius="md" boxShadow="md">
+      <Box bg="white" p={4} borderRadius="md" boxShadow="md" _dark={{ bg:"blackAlpha.100"}}>
         <Flex direction="column" align="center" p={6}>
           {campaignData ? (
             <>
@@ -87,6 +87,7 @@ const FeedbackFormPage = () => {
                 borderWidth="1px"
                 borderRadius="md"
                 bg="green.100"
+                _dark={{ bg:"#303934"}}
               >
                 <Flex direction="column" mb={2} align={"flex-start"}>
                   <Text fontSize={"md"} fontFamily={"body"} fontWeight={"bold"}>
@@ -130,6 +131,7 @@ const FeedbackFormPage = () => {
                     colorPalette="blue"
                     type="submit"
                     onClick={() => handleFeedbackSubmit(feedback)}
+                    _dark={{ bg:"#528162ff"}}
                   >
                     Submit Feedback
                   </Button>

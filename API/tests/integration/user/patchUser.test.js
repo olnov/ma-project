@@ -1,13 +1,12 @@
-// checkJwt middleware mocked in authMock.js
 const {
 	mockCheckJwt,
 	mockToken,
 	mockExistingUser,
-	mockNonExistentUserPayload,
 	mockUserUpdates
-} = require('../../setup/authMock'); 
+} = require('../../mocks');
 const request = require('supertest');
 const app = require('../../../app');
+
 const User = require('../../../models/user');
 
 describe('PATCH /me/update-profile', () => {

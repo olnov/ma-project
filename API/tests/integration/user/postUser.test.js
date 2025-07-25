@@ -1,13 +1,14 @@
 // checkJwt middleware mocked in authMock.js
-const {
-	mockCheckJwt,
+const { 
+	mockCheckJwt, 
 	mockToken,
 	mockExistingUser,
-	mockNonExistentUserPayload,
-	mockUserUpdates
-} = require('../../setup/authMock'); 
+	mockNonExistentUserPayload
+} = require('../../mocks'); 
+
 const request = require('supertest');
 const app = require('../../../app');
+
 const User = require('../../../models/user');
 
 describe('POST /sync', () => {

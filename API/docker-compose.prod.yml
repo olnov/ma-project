@@ -5,7 +5,7 @@ networks:
 services:
 
   caddy:
-    image: latest
+    image: caddy:latest
     ports:
       - "80:80"
       - "443:443"

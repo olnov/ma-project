@@ -14,10 +14,9 @@ const app = require('../../../app');
 const User = require('../../../models/user');
 const Campaign = require('../../../models/campaign');
 const Project = require('../../../models/project');
-const { findOrCreateProjects } = require('../../../services/project.service')
 
-// populated beforeEach test - allows user._id to be generated
-let testUser;
+// populated beforeEach test 
+let testUser; // allows user._id to be generated
 let goodCampaignTestData;
 
 describe('POST /', () => {
@@ -47,14 +46,6 @@ describe('POST /', () => {
 	});
 
 	it('returns a 201 and the new campaign', async () => {
-		// const mockProjects = [mockProjectOne, mockProjectTwo]
-		// goodCampaignTestData = buildMockCampaign({
-		// 	title: mockNewCampaign.title,
-		// 	description: mockNewCampaign.description,
-		// 	createdBy: testUser,
-		// 	projects: mockProjects
-		// });
-		
 		const res = await request(app)
 			.post('/api/v1/campaigns/')
 			.set('Content-Type','application/json')
@@ -82,13 +73,6 @@ describe('POST /', () => {
 	});
 
 	it('returns a 400 if title, createdBy or projects are missing from payload', async () => {
-		// const mockProjects = [mockProjectOne, mockProjectTwo]
-		// const goodCampaignTestData = buildMockCampaign({
-		// 	title: mockNewCampaign.title,
-		// 	description: mockNewCampaign.description,
-		// 	createdBy: testUser,
-		// 	projects: [mockProjectOne]
-		// });
 		const requiredFields = ['title', 'createdBy', 'projects'];
 		// test attempt to create campaign with each required field omitted
 		for (const field of requiredFields) {
@@ -113,8 +97,8 @@ describe('POST /', () => {
 	});
 
 	it('returns a 500 when there is a server error', async () => {
-		jest.spyOn(User, 'findById').mockImplementation(() => { //Simulates a server error
-			throw new Error('Simulated DB failure');
+		jest.spyOn(User, 'findById').mockImplementation(() => {
+			throw new Error('Simulated DB failure'); //Simulates a server error
 		});
 		const res = await request(app)
 			.post('/api/v1/campaigns/')

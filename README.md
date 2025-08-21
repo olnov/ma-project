@@ -1,13 +1,63 @@
-# RevYou
+# RevYou  
+*Your career, reviewed. Capture and showcase authentic feedback that sets you apart.*  
 
-RevYou is a feedback-driven portfolio platform. It lets users collect **meaningful, project-specific feedback** from colleagues, clients, managers, mentors, and peers — and present it as a **shareable profile**.
+<p align="center">
+  <img src="docs/logo.png" alt="RevYou Logo" width="120"/>
+</p>
 
-Rather than vague LinkedIn recommendations, RevYou ties feedback to **Campaigns** (e.g. “Deloitte”) and **Projects** (e.g. “Manager”, “Senior Manager”, “Partner” or specific client work like “HSBC”). Students, freelancers, and professionals can all build a credible track record of real work backed by real feedback.
+<p align="center">
+  <img src="https://img.shields.io/badge/Frontend-React%2019-blue?logo=react" alt="React 19"/>
+  <img src="https://img.shields.io/badge/Backend-Node%2018%2B-green?logo=nodedotjs" alt="Node.js 18+"/>
+  <img src="https://img.shields.io/badge/Database-MongoDB-lightgreen?logo=mongodb" alt="MongoDB"/>
+  <img src="https://img.shields.io/badge/Auth-Auth0-orange?logo=auth0" alt="Auth0"/>
+  <img src="https://img.shields.io/badge/Status-In%20Progress-orange" alt="Project Status"/>
+  <img src="https://img.shields.io/badge/License-Proprietary-red" alt="License"/>
+</p>
 
-> **Note**: This project is a work in progress.  
-> - Testing is ongoing (especially backend integration and end-to-end coverage)  
-> - Styling, design, and landing page are subject to change  
-> - Some features may be incomplete or modified before production release
+
+---
+
+## 🛑 Problem  
+In today’s job market, skills and experience alone aren’t enough.  
+- Careers are fluid — people move between jobs, projects, and industries faster than ever.  
+- Feedback fades quickly once projects end or teams change.  
+- LinkedIn recommendations exist, but they’re vague, scarce, and tied to one platform.  
+- Employers and clients increasingly expect **proof, not just claims**.  
+
+Professionals lack a structured, portable way to capture and showcase authentic, project-specific feedback.  
+
+---
+
+## 💡 Solution  
+RevYou is a feedback-driven portfolio platform that helps you:  
+- **Capture real-time feedback** while it’s still fresh.  
+- **Organise insights** into Campaigns (companies, clients, or organisations) and Projects (roles, assignments, collaborations).  
+- **Build a shareable profile** of authentic testimonials that highlight your strengths, growth, and achievements.  
+- **Stand out in a world of AI-generated CVs** by showcasing the human element — real feedback from real people.  
+
+Whether you’re a developer, freelancer, teacher, student, or volunteer, RevYou helps you:  
+1. Showcase your strengths with authentic, verifiable feedback.  
+2. Spot growth opportunities through constructive insights.  
+3. Bring your CV to life with a dynamic story of your career journey.  
+
+---
+
+## ⏳ Why Now?  
+Work has never been more dynamic:  
+- Projects end quickly, teams are fluid, and careers span multiple industries.  
+- AI makes it easy to generate polished CVs and cover letters — making it harder to stand out.  
+- Proof and testimonials are now standard in consumer products and services, but not in careers.  
+
+RevYou fills that gap, giving professionals a **human-first portfolio of feedback** at the moment it’s needed most.  
+
+---
+
+## ✨ Key Features
+- **Create Campaigns & Projects** to organise your work.
+- **Send feedback requests** to colleagues, clients, or team members.
+- **Public share links** for specific projects or campaigns.
+- **Auth0-powered authentication** for secure access.
+- **Structured data storage** in MongoDB Atlas.
 
 ---
 
@@ -28,6 +78,15 @@ Rather than vague LinkedIn recommendations, RevYou ties feedback to **Campaigns*
 **Other**
 - Docker / docker-compose (deployment)
 - Cross-env (env handling for scripts)
+
+---
+
+## 🔍 How It Works (User Journey)
+1. **Sign Up** with Auth0 (Google, email/password, etc.).
+2. **Create a Campaign** to group related work.
+3. **Add Projects** under the campaign.
+4. **Send feedback requests** via unique links.
+5. **Share your feedback profile** with recruiters or clients.
 
 ---
 
@@ -76,79 +135,6 @@ Rather than vague LinkedIn recommendations, RevYou ties feedback to **Campaigns*
 
 ---
 
-## Environment Variables
-
-Create `.env` files in **both** `/API` and `/FE`.
-
-### `/API/.env`
-```env
-NODE_ENV = production (or development)
-SWAGGER_BE = localhost:3000
-MONGO_URI = mongodb://localhost:27017 (Local development)
-MONGO_URI = mongodb+srv://user:password@atlas-cluster-name/?retryWrites=true&w=majority&appName=your-app-name (Atlas)
-JWT_SECRET = your_secret_here
-BASE_URL = http://localhost:5000
-AUTH0_AUDIENCE = auth0-audience
-AUTH0_DOMAIN = auth0-domain-name
-AUTH0_CLIENT_ID = auth0-client-id
-```
-
-### `/FE/.env ` (Vite uses the VITE_ prefix)
-```env
-VITE_BACKEND_URL="http://localhost:5000" # base URL for your API
-VITE_FEEDBACK_BASE_URL="http://localhost:5173"
-VITE_SHAREABLE_PROFILE_BASE_URL="http://localhost:5173"
-VITE_AUTH0_DOMAIN=domain.auth0.com
-VITE_AUTH0_CLIENT_ID=<auth0Clientid>
-VITE_AUTH0_AUDIENCE=<auth0Audience> # must match API audience 
-VITE_AUTH0_CALLBACK_URL=<redirect_uri>
-FE_PORT=8080
-```
-
-## Auth0 Setup (Local Development)
-
-You need two things in Auth0:
-
-### 1) **Single Page Application (SPA)** — for the **React frontend**
-- Application Type: **Single Page Application**
-- Get **Domain** and **Client ID** → put in `/FE/.env`
-- Allowed Callback URLs: `http://localhost:5173`
-- Allowed Logout URLs: `http://localhost:5173`
-- Allowed Web Origins: `http://localhost:5173`
-- In the Auth0Provider on the FE, request scopes: `openid profile email`
-- Set **audience** to your API identifier (below)
-
-### 2) **Auth0 API** — defines the **Audience** that your FE asks for and your API validates
-- In **Auth0 → APIs**, click **Create API**
-- **Identifier** (Audience): e.g. `api.revyou` or `https://revyou.api`
-- **Signing Algorithm**: RS256
-- Put this Identifier into `/FE/.env` (`VITE_AUTH0_AUDIENCE`) and `/API/.env` (`AUTH0_AUDIENCE`)
-
-> **Do I need a Machine-to-Machine app?**  
-> Not for protecting your Express routes. Protecting routes is handled by the SPA getting an **Access Token** for your API and the API validating it (via `checkJwt`).  
-> You **do** need an M2M app if your backend must call **Auth0 Management API** or some other server-to-server resource (e.g., during Actions webhooks). Otherwise, skip it for now.
-
-## Running the Project Locally
-
-### Backend (API)
-```bash
-cd API
-npm install
-npm run dev
-# Server at http://localhost:5000
-# Swagger UI (dev only): http://localhost:5000/api/v1/docs
-```
-
-### Frontend (FE)
-```bash
-cd FE
-npm install
-npm run dev
-# App at http://localhost:5173
-```
-
----
-
 ## Key API Endpoints (current)
 
 > Full docs available at **/api/v1/docs** (Swagger) when `NODE_ENV=development`.
@@ -165,78 +151,23 @@ npm run dev
 | PATCH  | `/api/v1/campaigns/save-feedback`        | ❌   | Save feedback for a campaign via a public link                        |
 |  GET   | `/api/v1/shareable-profiles/:userId`     | ❌   | Get aggregated shareable profile content for a specific user          |
 
+---
 
-## Authentication Flow (SPA → API)
-1. User clicks **Log In** in the React app.  
-2. Auth0 SPA **redirects** user and returns an **ID Token** (for FE profile) and **Access Token** (for API).  
-3. FE calls API endpoints with `Authorization: Bearer <access_token>`.  
-4. API uses `checkJwt` (`express-oauth2-jwt-bearer`) to validate the Access Token (audience/domain/signature).  
-5. Controllers/services read the user’s `sub` from `req.auth.payload.sub`.
-
-> We also have an **AuthSync** step: after login, the FE calls `/users/sync` with profile basics (from the ID token) so the API can **create the user** in MongoDB (if not already there) keyed by Auth0 `sub`. This will be updated to an Auth0 Post-Login Action in due course.
-
-## Testing (Backend)
-
-We’re adding **integration tests** with **Jest + Supertest**.
-
-**Run tests**
-```bash
-cd API
-npm test
-```
-> We recommend using an in-memory MongoDB (mongodb-memory-server) or a dedicated test DB with MONGO_URI pointing to a test database. Tests hit the Express app directly (from app.js) without starting a real server.
+## 🚧 Work in Progress
+RevYou is an active project with ongoing development. Current priorities include:
+- Expanding backend test coverage (Jest + Supertest).
+- Enhancing the user interface and overall UX (landing page, visual polish).
+- Adding advanced features such as analytics and richer profile-sharing options.
 
 ---
 
-## Deployment
+## 🌐 Deployment
+- **Frontend:** Netlify  
+- **Backend:** IONOS VPS (Dockerised)  
+- **Database:** MongoDB Atlas  
+This setup ensures scalability, uptime, and ease of iteration.
 
-### Overview
-- **Frontend (SPA)**: Netlify (builds `/FE`, Vite + React + Auth0 SPA)
-- **Backend API**: IONOS VPS (Docker container from `/API`)
-- **Database**: MongoDB Atlas (shared dev/prod cluster)
-
-### Frontend (Netlify)
-1. Set Netlify site to build from `/FE`
-2. Build command: `npm run build`
-3. Publish directory: `dist`
-4. Environment variables:
-   - `VITE_BACKEND_URL`
-   - `VITE_AUTH0_DOMAIN`
-   - `VITE_AUTH0_CLIENT_ID`
-   - `VITE_AUTH0_AUDIENCE`
-   - `VITE_AUTH0_CALLBACK_URL`
-
-### Backend (IONOS VPS, Docker)
-1. Copy `/API/.env` (based on `.env.example`) to the server.
-2. Build & run:
-   ```bash
-   cd API
-   docker build -t revyou-api .
-   docker run -d \
-     -p $API_PORT:$API_PORT \
-     --env-file .env \
-     --name revyou-api \
-     revyou-api
-     ```
-3.	Required env vars:
-   - `MONGO_URI` (Atlas connection string)
-   - `AUTH0_DOMAIN`, `AUTH0_AUDIENCE`, `AUTH0_CLIENT_ID`
-   - `BASE_URL`, `SWAGGER_BE` (if used), `PORT`
-
-
-### Local Development (optional, Docker)
-Backend only (with local Mongo):
-
-```bash
-cd API
-docker compose -f docker-compose.dev.yml up --build
-```
-
-Frontend in Docker (optional):
-```bash
-cd FE
-docker compose -f docker-compose.dev.yml up --build
-```
+---
 
 ## Credits
 

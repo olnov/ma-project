@@ -2,12 +2,10 @@
 *Your career, reviewed. Capture and showcase authentic feedback that sets you apart.*  
 
 <p align="center">
-  <img src="docs/logo.png" alt="RevYou Logo" width="120"/>
-</p>
-
-<p align="center">
   <img src="https://img.shields.io/badge/Frontend-React%2019-blue?logo=react" alt="React 19"/>
+  <img src="https://img.shields.io/badge/UI-Chakra%20UI-teal?logo=chakraui" alt="Chakra UI"/>
   <img src="https://img.shields.io/badge/Backend-Node%2018%2B-green?logo=nodedotjs" alt="Node.js 18+"/>
+  <img src="https://img.shields.io/badge/Framework-Express-black?logo=express" alt="Express"/>
   <img src="https://img.shields.io/badge/Database-MongoDB-lightgreen?logo=mongodb" alt="MongoDB"/>
   <img src="https://img.shields.io/badge/Auth-Auth0-orange?logo=auth0" alt="Auth0"/>
   <img src="https://img.shields.io/badge/Status-In%20Progress-orange" alt="Project Status"/>

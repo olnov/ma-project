@@ -22,7 +22,7 @@ ENV VITE_AUTH0_CALLBACK_URL=$VITE_AUTH0_CALLBACK_URL
 RUN npm run build
 
 
-FROM caddy:alpine AS runner
+FROM caddy:2.11-alpine AS runner
 
 WORKDIR /app
 
